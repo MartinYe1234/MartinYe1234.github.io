@@ -18,3 +18,6 @@ header {
 body{
 	background-color: rgb(127, 144, 144, 0.7);
 }
+* {
+	font-family: Arial;
+}
