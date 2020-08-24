@@ -1,7 +1,7 @@
 header {
-	border: 5px red;
+	border: 5px solid red;
 	background-color: lightgrey;
-	text-align: right
+	text-align: center
 }
 body{
 	background-color: rgb(127, 144, 144, 0.7);
