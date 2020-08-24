@@ -1,6 +1,8 @@
 .myHeader {
+	border: 5px red;
+	background-color: lightgrey;
 	text-align: center
 }
 body{
-	background-color: rgb(127, 144, 144, 0.3);
+	background-color: rgb(127, 144, 144, 0.7);
 }
