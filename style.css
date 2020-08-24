@@ -1,13 +1,13 @@
 header {
 	border: 5px solid red;
 	background-color: lightgrey;
-	text-align: center
+	text-align: center;
 }
 .headerButton{
 	color: white;
-	border: none
-	text-align: center
-	padding: 15px 32px
+	border: none;
+	text-align: center;
+	padding: 15px 32px;
 }
 body{
 	background-color: rgb(127, 144, 144, 0.7);
