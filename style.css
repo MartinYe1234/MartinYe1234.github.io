@@ -6,6 +6,7 @@ header {
 .headerButton{
 	color: white;
 	border: none;
+	background-color: rgb(79, 79, 79);
 	text-align: center;
 	padding: 15px 32px;
 }
