@@ -8,6 +8,7 @@ header {
 	border: none;
 	background-color: rgb(79, 79, 79);
 	text-align: center;
+	text-decoration: none;
 	padding: 15px 32px;
 }
 body{
