@@ -11,6 +11,9 @@ header {
 	text-align: center;
 	text-decoration: none;
 	padding: 15px 32px;
+	position: relative;
+  top: 41px;
+  left: -258px;
 }
 body{
 	background-color: rgb(127, 144, 144, 0.7);
