@@ -1,3 +1,3 @@
 function test(){
-	document.getElementById("header").style.color = "red";
+	document.getElementById("testbutton").style.color = "green";
 }
