@@ -1,3 +1,3 @@
 function test(){
-pass
+	document.getElementById("header").style.color = "red";
 }
