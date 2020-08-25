@@ -3,7 +3,7 @@ header {
 	background-color: lightgrey;
 	text-align: center;
 }
-.headerButtons button{
+.headerButtons a{
 	color: white;
 	border: solid;
 	border-color: rgb(23, 94, 28);
