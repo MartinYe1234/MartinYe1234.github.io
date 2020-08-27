@@ -15,6 +15,10 @@ header {
   top: 41px;
   left: -258px;
 }
+.headerButtons a:hover{
+	color: grey;
+	border-color: rgb(50, 94, 50);
+}
 body{
 	background-color: rgb(127, 144, 144, 0.7);
 }
