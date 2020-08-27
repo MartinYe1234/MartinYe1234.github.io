@@ -22,11 +22,13 @@ header {
 
 /* css used for projects page */
 
-.projectSelectButtons button{
+.projectSelectButtons{
 	border: 2px solid dimgrey;
 	text-align: center;
-	padding: 128px 32px;
-	float:left;
+	display: grid;
+	grid-gap: 5px;
+	grid-template-columns: repeat(2, 50%)
+	
 }
 
 .projectSelectButtons button:hover{
