@@ -4,6 +4,16 @@ header {
 	background-color: lightgrey;
 	text-align: center;
 }
+/*css for logo*/
+
+.logo{
+	position: absolute;
+	width: 32px;
+	height: 32px;
+	top: 10px;
+	left: 10px;
+}
+
 /* css used for buttons on home page */
 .headerButtons button{
 	color: white;
