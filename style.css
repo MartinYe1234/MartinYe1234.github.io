@@ -23,6 +23,7 @@ header {
 /* css used for projects page */
 
 .projectSelectButtons{
+	border: none;
 	text-align: center;
 	display: grid;
 	grid-gap: 5px;
