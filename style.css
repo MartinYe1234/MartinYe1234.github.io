@@ -10,7 +10,7 @@ header {
 	text-align: center;
 	text-decoration: none;
 	padding: 15px 32px;
-	position: absolute;
+	float: left;
 }
 .headerButtons button:hover{
 	color: grey;
