@@ -7,7 +7,7 @@ header {
 /*css for logo button that takes you back to main page*/
 
 .logo{
-	background: url('/images/StewburryLOGO.png');
+	border: 3px solid red;
 }
 
 /* css used for buttons on home page */
