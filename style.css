@@ -5,8 +5,7 @@ header {
 }
 .headerButtons button{
 	color: white;
-	border: solid green;
-	border-color: rgb(23, 94, 28);
+	border: none;
 	background-color: rgb(79, 79, 79);
 	text-align: center;
 	text-decoration: none;
@@ -15,7 +14,6 @@ header {
 }
 .headerButtons button:hover{
 	color: grey;
-	border-color: rgb(50, 94, 50);
 	background-color: rgb(0,0,0);
 }
 body{
