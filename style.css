@@ -1,8 +1,10 @@
+
 header {
 	border: 5px solid red;
 	background-color: lightgrey;
 	text-align: center;
 }
+/* css used for buttons on home page */
 .headerButtons button{
 	color: white;
 	border: none;
@@ -12,13 +14,26 @@ header {
 	padding: 15px 32px;
 	float: left;
 }
+
 .headerButtons button:hover{
 	color: grey;
 	background-color: rgb(0,0,0);
 }
+
+/* css used for projects page */
+
+.projectSelectButtons button{
+	border: 2px solid black;
+	text-align: center;
+	padding: 32px 32px;
+	float:left;
+}
+
+
 body{
 	background-color: rgb(127, 144, 144, 0.7);
 }
+
 * {
 	font-family: Arial;
 }
