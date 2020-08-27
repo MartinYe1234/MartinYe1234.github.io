@@ -11,9 +11,7 @@ header {
 	text-align: center;
 	text-decoration: none;
 	padding: 15px 32px;
-	position: relative;
-  top: 41px;
-  left: -258px;
+	position: absolute;
 }
 .headerButtons button:hover{
 	color: grey;
