@@ -5,7 +5,7 @@ header {
 }
 .headerButtons button{
 	color: white;
-	border: solid;
+	border: solid green;
 	border-color: rgb(23, 94, 28);
 	background-color: rgb(79, 79, 79);
 	text-align: center;
