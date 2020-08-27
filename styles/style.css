@@ -7,7 +7,7 @@ header {
 /*css for logo button that takes you back to main page*/
 
 .logo{
-	background-image: url("images/StewburryLOGO.png"):
+	background-image: url("/images/StewburryLOGO.png"):
 	background-size: 32px 32px;
 }
 
