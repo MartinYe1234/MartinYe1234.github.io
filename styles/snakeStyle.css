@@ -1,3 +1,9 @@
 canvas{
 	border: 1px solid black;
+	float: center;
+}
+
+.snakeBanner img{
+	border: none;
+	width: 100%;
 }

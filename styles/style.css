@@ -18,6 +18,7 @@ header {
 .headerButtons{
 	float: left;
 }
+
 .headerButtons button{
 	color: white;
 	border: none;
