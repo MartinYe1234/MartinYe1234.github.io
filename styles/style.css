@@ -38,8 +38,9 @@ header {
 	border: none;
 	text-align: center;
 	display: grid;
-	padding: 5%;
-	grid-template-columns: repeat(2, 50%)
+	padding: 4%;
+	grid-template-columns: auto auto;
+	grid-gap: 4%;
 }
 
 .projectSelectButtons a{
