@@ -38,8 +38,7 @@ header {
 	border: none;
 	text-align: center;
 	display: grid;
-	padding: 1rem;
-	grid-gap: 1rem;
+	padding: 5%;
 	grid-template-columns: repeat(2, 50%)
 }
 
