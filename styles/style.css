@@ -8,9 +8,9 @@ header {
 
 .logo{
 	border: 3px solid red;
-	position: absolute;
-	height: 64px;
-	width: 64px; 
+	float: left;
+	position: relative;
+	
 }
 
 /* css used for buttons on home page */
