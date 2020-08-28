@@ -3,10 +3,12 @@ header {
 	border: 5px solid red;
 	background-color: lightgrey;
 	text-align: center;
+	height: 128px
 }
 /*css for logo button that takes you back to main page*/
 
 .logo{
+	border: none;
 	float: left;
 }
 
