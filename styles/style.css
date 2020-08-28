@@ -48,13 +48,11 @@ header {
 }
 
 .projectSelectButtons img{
-	border: 1px solid green;
 	transition: transform 0.1s;
 	width: 100%;
 }
 
 .projectSelectButtons img:hover{
-	border:1px solid black;
 	transform: scale(1.1);
 }
 
