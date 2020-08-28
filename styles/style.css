@@ -20,6 +20,7 @@ header {
 	text-align: center;
 	text-decoration: none;
 	padding: 15px 32px;
+	float: left;
 }
 
 .headerButtons button:hover{
@@ -35,10 +36,9 @@ header {
 	display: grid;
 	grid-gap: 5px;
 	grid-template-columns: repeat(2, 50%)
-	
 }
 
-.projectSelectButtons button:hover{
+.projectSelectButtons a:hover{
 	border-color: black;
 }
 
