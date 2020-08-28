@@ -8,7 +8,7 @@ header {
 /*css for logo button that takes you back to main page*/
 
 .logo{
-	border: none;
+	border: 1px solid black;
 	float: left;
 }
 
