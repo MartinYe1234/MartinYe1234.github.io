@@ -7,19 +7,23 @@ header {
 }
 /*css for logo button that takes you back to main page*/
 
-.logo{
+.logo img{
 	border: 1px solid black;
+	height: 128px;
+	width: 128px;
 	float: left;
 }
 
 /* css used for buttons on home page */
+.headerButtons{
+	float: left;
+}
 .headerButtons button{
 	color: white;
 	border: none;
 	background-color: rgb(79, 79, 79);
 	text-align: center;
 	text-decoration: none;
-	padding: 15px 32px;
 	float: left;
 }
 
