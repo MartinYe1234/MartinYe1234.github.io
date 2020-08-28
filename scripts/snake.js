@@ -5,7 +5,7 @@ var gameArena = {
 		this.canvas.width = 768;
 		this.canvas.height = 768;
 		this.context = this.canvas.getContext("2d");
-		document.body.insertBefore(this.canvas, document.body.childNodes[0]); //inserts the canvas as first in the document body
+		document.body.insertBefore(this.canvas, null); //inserts the canvas at the bottom of the page
 	}
 }
 // function used to initiliaze canvas on page load
