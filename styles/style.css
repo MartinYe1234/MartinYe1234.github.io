@@ -43,7 +43,7 @@ header {
 }
 
 .projectSelectButtons a:hover{
-	border-color: black;
+	border:2px solid black;
 }
 
 
