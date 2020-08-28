@@ -43,6 +43,9 @@ header {
 	grid-template-columns: repeat(2, 50%)
 }
 
+.projectSelectButtons a{
+	border:1px solid black;
+}
 .projectSelectButtons img{
 	transition: transform 0.1s;
 	height: 50%;
@@ -50,6 +53,7 @@ header {
 }
 
 .projectSelectButtons img:hover{
+	border:1px solid black;
 	transform: scale(1.1);
 }
 
