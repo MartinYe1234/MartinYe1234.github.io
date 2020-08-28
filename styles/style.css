@@ -35,6 +35,7 @@ header {
 /* css used for projects page */
 
 .projectSelectButtons{
+	width: 100%;
 	border: none;
 	text-align: center;
 	display: grid;
