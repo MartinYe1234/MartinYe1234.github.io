@@ -10,5 +10,5 @@ var gameArena = {
 }
 // function used to initiliaze canvas on page load
 function startGame(){
-	
+	gameArea.start();
 }
