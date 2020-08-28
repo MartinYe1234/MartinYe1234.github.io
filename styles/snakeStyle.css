@@ -16,6 +16,7 @@ canvas{
 /* controls big banner at the very top of the page */
 
 .snakeBanner img{
+	float: left;
 	border: none;
 	width: 100%;
 }
