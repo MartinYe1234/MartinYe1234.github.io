@@ -35,21 +35,20 @@ header {
 /* css used for projects page */
 
 .projectSelectButtons{
-	width: 100%;
 	border: none;
 	text-align: center;
 	display: grid;
-	grid-gap: 0px;
+	grid-gap: 5px;
 	grid-template-columns: repeat(2, 50%)
 }
 
 .projectSelectButtons a{
 	border:1px solid black;
 }
+
 .projectSelectButtons img{
 	transition: transform 0.1s;
-	height: 50%;
-	width: 50%;
+	width: 100%;
 }
 
 .projectSelectButtons img:hover{
