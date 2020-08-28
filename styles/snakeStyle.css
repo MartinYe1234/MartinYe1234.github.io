@@ -1,16 +1,23 @@
-canvas{
-	border: 1px solid black;
-	float: center;
-}
-
-.snakeBanner img{
-	border: none;
-	width: 100%;
-}
-
+/* home logo */
 .homeLogo img{
 	border: none;
 	height: 128px;
 	width: 128px;
 	float: left;
 }
+
+/* controls how the canvas looks */
+
+canvas{
+	border: 1px solid black;
+	float: center;
+}
+
+/* controls big banner at the very top of the page */
+
+.snakeBanner img{
+	border: none;
+	width: 100%;
+}
+
+
