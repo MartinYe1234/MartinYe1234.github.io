@@ -44,8 +44,8 @@ header {
 
 .projectSelectButtons img{
 	transition: transform 0.1s;
-	height: 700px;
-	width: 700px;
+	height: 650px;
+	width: 650px;
 }
 
 .projectSelectButtons img:hover{
