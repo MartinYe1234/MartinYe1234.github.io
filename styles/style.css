@@ -42,6 +42,11 @@ header {
 	grid-template-columns: repeat(2, 50%)
 }
 
+.projectSelectButtons img{
+	height: 512px;
+	width: 512px;
+}
+
 .projectSelectButtons img:hover{
 	border:2px solid black;
 }
