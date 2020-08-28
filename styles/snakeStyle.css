@@ -7,3 +7,10 @@ canvas{
 	border: none;
 	width: 100%;
 }
+
+.homeLogo img{
+	border: none;
+	height: 128px;
+	width: 128px;
+	float: left;
+}
