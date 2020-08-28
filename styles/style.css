@@ -1,6 +1,6 @@
 
 header {
-	border: 5px solid red;
+	border: none;
 	background-color: lightgrey;
 	text-align: center;
 	height: 128px
@@ -43,12 +43,13 @@ header {
 }
 
 .projectSelectButtons img{
-	height: 512px;
-	width: 512px;
+	transition: transform 0.1s;
+	height: 800px;
+	width: 800px;
 }
 
 .projectSelectButtons img:hover{
-	border:2px solid black;
+	transform: scale(1.1);
 }
 
 
@@ -58,4 +59,5 @@ body{
 
 * {
 	font-family: Monospace;
+	margin: 0;
 }
