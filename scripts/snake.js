@@ -6,7 +6,7 @@ var gameArena = {
 		this.canvas.height = 768;
 		this.context = this.canvas.getContext("2d");
 		document.body.insertBefore(this.canvas, null); //inserts the canvas at the bottom of the page
-	}
+	},
 	clear : function(){
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 	}
