@@ -18,5 +18,5 @@ function startGame(){
 
 // our draw function that constantly updates our canvas
 function draw(){
-	canvas
+	canvas.clear();
 }
