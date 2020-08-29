@@ -4,13 +4,13 @@ function test(){
 }
 
 function hoverOver(){
-	if (document.getElementsByClassName("projectSnake")){
+	if (document.getElementById("snakeLOGO")){
 		document.getElementById("snakeLOGO").src="images/snakeGameGIF.gif";
 	}
 }
 
 function hoverOff(){
-	if (document.getElementsByClassName("projectSnake")){
+	if (document.getElementById("snakeLOGO")){
 		document.getElementById("snakeLOGO").src="images/snakeGameLOGO.png";
 	}
 }
