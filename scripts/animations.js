@@ -5,12 +5,12 @@ function test(){
 
 function hoverOver(){
 	if (document.getElementsByClassName("projectSnake")){
-		document.getElementsById("snakeLOGO").src="images/snakeGameGIF.gif";
+		document.getElementById("snakeLOGO").src="images/snakeGameGIF.gif";
 	}
 }
 
 function hoverOff(){
 	if (document.getElementsByClassName("projectSnake")){
-		document.getElementsById("snakeLOGO").src="images/snakeGameLOGO.png";
+		document.getElementById("snakeLOGO").src="images/snakeGameLOGO.png";
 	}
 }
