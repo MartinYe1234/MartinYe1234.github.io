@@ -1,5 +1,5 @@
-var canvas;
-var context;
+var canvas; // initialise canvas
+var context; // initialise context
 //this is the player
 class Snake {
   constructor(color, width, height, x, y) {
@@ -9,7 +9,7 @@ class Snake {
     this.x = x;
     this.y = y;
   }
-  movement(){
+  update(){
   	this.y -=0.01;
   }
   draw(ctx) {
@@ -18,25 +18,9 @@ class Snake {
   }
 }
 
-//define our canvas
-var gameArena = {
-  canvas: document.createElement("canvas"),
-  start: function() {
-    this.canvas.width = 250;
-    this.canvas.height = 250;
-    this.context = this.canvas.getContext("2d");
-    document.body.insertBefore(this.canvas, null); //inserts the canvas at the bottom of the page
-    //this.interval = setInterval(draw, 2); 
-  },
-  clear: function() {
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  }
-}
-// function used to initiliaze canvas on page load
-/* function startGame(){
-  gameArena.start();
-} */
+// function used to initiliaze necessary items on page load
 function startGame() {
+	// create a canvas, context, dimensions and event listeners
   canvas = document.createElement("canvas");
   canvas.width = 250;
   canvas.height = 250;
@@ -55,7 +39,7 @@ function draw() {
   context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   //eventHandler(event);
   player.draw(context);
-  player.movement();
+  player.update();
 }
 
 function eventHandler(event) {
