@@ -1,22 +1,63 @@
+var canvas;
+var context;
+//this is the player
+class Snake {
+  constructor(color, width, height, x, y) {
+    this.color = color;
+    this.width = width;
+    this.height = height;
+    this.x = x;
+    this.y = y;
+  }
+  movement(){
+  	this.y -=0.01;
+  }
+  draw(ctx) {
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.x, this.y, this.width, this.height);
+  }
+}
+
 //define our canvas
 var gameArena = {
-	canvas : document.createElement("canvas"),
-	start : function(){
-		this.canvas.width = 768;
-		this.canvas.height = 768;
-		this.context = this.canvas.getContext("2d");
-		document.body.insertBefore(this.canvas, null); //inserts the canvas at the bottom of the page
-	},
-	clear : function(){
-		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-	}
+  canvas: document.createElement("canvas"),
+  start: function() {
+    this.canvas.width = 250;
+    this.canvas.height = 250;
+    this.context = this.canvas.getContext("2d");
+    document.body.insertBefore(this.canvas, null); //inserts the canvas at the bottom of the page
+    //this.interval = setInterval(draw, 2); 
+  },
+  clear: function() {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
 }
 // function used to initiliaze canvas on page load
-function startGame(){
-	gameArena.start();
+/* function startGame(){
+  gameArena.start();
+} */
+function startGame() {
+  canvas = document.createElement("canvas");
+  canvas.width = 250;
+  canvas.height = 250;
+  context = canvas.getContext("2d");
+  document.body.insertBefore(this.canvas, null);
+  interval = setInterval(draw, 2);
+  canvas.addEventListener('keydown', eventHandler(event));
+  canvas.addEventListener('keyup', eventHandler(event));
+  // create our game piece
+  player = new Snake('red', 30, 30, 10, 120);
 }
 
 // our draw function that constantly updates our canvas
-function draw(){
-	canvas.clear();
+function draw() {
+  //clear screen everytime
+  context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  //eventHandler(event);
+  player.draw(context);
+  player.movement();
+}
+
+function eventHandler(event) {
+  console.log(event.type);
 }
