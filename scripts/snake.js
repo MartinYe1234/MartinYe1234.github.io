@@ -2,15 +2,20 @@ var canvas; // initialise canvas
 var context; // initialise context
 //this is the player
 class Snake {
-  constructor(color, width, height, x, y) {
+  constructor(color, width, height, x, y, velocity) {
     this.color = color;
     this.width = width;
     this.height = height;
     this.x = x;
     this.y = y;
+    this.velocity = velocity; // velocity is a list [x,y], representing x and y components of the snakes velocity
+    this.vx = this.velocity[0];
+    this.vy = -this.velocity[1]; // this is done so that a negative velocity will move player down the screen
   }
   update(){
-  	this.y -=0.01;
+  	//update our position
+  	this.y += this.vy;
+    this.x += this.vx;
   }
   draw(ctx) {
     ctx.fillStyle = this.color;
@@ -30,14 +35,13 @@ function startGame() {
   canvas.addEventListener('keydown', eventHandler(event));
   canvas.addEventListener('keyup', eventHandler(event));
   // create our game piece
-  player = new Snake('red', 30, 30, 10, 120);
+  player = new Snake('red', 30, 30, 10, 120, [0,0.1]);
 }
 
 // our draw function that constantly updates our canvas
 function draw() {
   //clear screen everytime
   context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  //eventHandler(event);
   player.draw(context);
   player.update();
 }
