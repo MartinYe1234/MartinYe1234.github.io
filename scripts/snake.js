@@ -32,9 +32,9 @@ function startGame() {
   context = canvas.getContext("2d");
   document.body.insertBefore(this.canvas, null);
   interval = setInterval(draw, 2);
-  canvas.addEventListener('keydown', eventHandler(event));
-  canvas.addEventListener('keyup', eventHandler(event));
-	canvas.addEventListener('mousedown', eventHandler(event));
+  canvas.addEventListener('keydown', eventHandler, false);
+  canvas.addEventListener('keyup', eventHandler, false);
+	canvas.addEventListener('mousedown', eventHandler, false);
   // create our game piece
   player = new Snake('red', 30, 30, 10, 120, [0,0.1]);
 }
@@ -48,7 +48,8 @@ function draw() {
 }
 
 function eventHandler(event) {
-  if(event.type=="load"){
-		alert(event.type);
-	};
+  x = event.pageX;
+	y=event.pageY;
+	alert("X,Y="+x+","+y);
+	
 }
