@@ -48,5 +48,7 @@ function draw() {
 }
 
 function eventHandler(event) {
-  alert(event.type);
+  if(event.type=="load"){
+		alert(event.type);
+	};
 }
