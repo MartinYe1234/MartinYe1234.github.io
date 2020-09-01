@@ -30,7 +30,7 @@ function startGame() {
   canvas.width = 768;
   canvas.height = 768;
   context = canvas.getContext("2d");
-  document.body.insertBefore(this.canvas, null);
+  document.body.insertBefore(canvas, null);
   interval = setInterval(draw, 2);
   canvas.addEventListener('keydown', eventHandler, false);
   canvas.addEventListener('keyup', eventHandler, false);
@@ -49,10 +49,7 @@ function draw() {
 
 function eventHandler(e) {
 	if (e.keyCode == 87) {player.vy = 0.25} // w key
-
   if (e.keyCode == 83) {player.vy = -0.25} // s key
-
   if (e.keyCode == 65) {player.vx = -0.25}	// a key
-
   if (e.keyCode == 68) {player.vx = 0.25} // d key
 }
