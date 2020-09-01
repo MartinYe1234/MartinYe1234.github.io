@@ -48,6 +48,7 @@ function draw() {
 }
 
 function eventHandler(e) {
+	alert(e.type);
 	if (e.keyCode == 87) {player.vy = 0.25} // w key
   if (e.keyCode == 83) {player.vy = -0.25} // s key
   if (e.keyCode == 65) {player.vx = -0.25}	// a key
