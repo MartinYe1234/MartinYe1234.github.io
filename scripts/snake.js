@@ -1,14 +1,16 @@
 canvas = document.getElementById("game"); // stores canvas
 context = canvas.getContext("2d"); // stores context
+var gameGrid = []; // split canvas up into sections
 //this is the player
 class Snake {
-  constructor(color, width, height, x, y, velocity) {
+  constructor(color, width, height, x, y, velocity, length) {
     this.color = color;
     this.width = width;
     this.height = height;
     this.x = x;
     this.y = y;
     this.velocity = velocity; // velocity is a list [x,y], representing x and y components of the snakes velocity
+		this.length = length;
 
   }
   update() {
@@ -30,7 +32,7 @@ function startGame() {
   canvas.addEventListener('keydown', eventHandler, false); // add event listners
   canvas.addEventListener('keyup', eventHandler, false);
   // create our game piece
-  player = new Snake('red', 30, 30, 10, 120, [0, 0]);
+  player = new Snake('red', 30, 30, 10, 120, [0, 0], 1);
 }
 
 // our draw function that constantly updates our canvas

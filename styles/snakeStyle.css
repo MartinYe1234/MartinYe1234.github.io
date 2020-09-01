@@ -10,7 +10,8 @@
 
 canvas{
 	border: 1px solid black;
-	background-color: green;
+	width: 768;
+	height: 768;
 }
 
 /* controls big banner at the very top of the page */
