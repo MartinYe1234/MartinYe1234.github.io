@@ -47,6 +47,12 @@ function startGame() {
   canvas.addEventListener('keydown', eventHandler, false); // add event listners
   // create our game piece
   snake = new Snake('red', 30, 30, 10, 120, [0, 0], 1);
+	generateGrid();
+}
+
+// function to generate the game grid
+function generateGrid(){
+	console.log(canvas.width);
 }
 
 // our draw function that constantly updates our canvas
