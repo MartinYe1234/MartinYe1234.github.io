@@ -34,7 +34,6 @@ function startGame() {
   interval = setInterval(draw, 2);
   canvas.addEventListener('keydown', eventHandler, false);
   canvas.addEventListener('keyup', eventHandler, false);
-	canvas.addEventListener('mousedown', eventHandler, false);
   // create our game piece
   player = new Snake('red', 30, 30, 10, 120, [0,0]);
 }
