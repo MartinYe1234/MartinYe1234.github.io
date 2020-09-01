@@ -1,6 +1,8 @@
 canvas = document.getElementById("game"); // stores canvas
 context = canvas.getContext("2d"); // stores context
 var gameGrid = []; // split canvas up a 24x24 grid of 25 pixel squares
+var playerScore = 0;
+var travelSpeed = 0.2*1.04**playerScore; // speed at which snake moves is based on playerScore
 //this is the snake
 class Snake {
   constructor(color, width, height, x, y, velocity, length) {
@@ -30,7 +32,6 @@ class Snake {
 function startGame() {
   interval = setInterval(draw, 2); // set the refresh rate of the canvas
   canvas.addEventListener('keydown', eventHandler, false); // add event listners
-  canvas.addEventListener('keyup', eventHandler, false);
   // create our game piece
   snake = new Snake('red', 30, 30, 10, 120, [0, 0], 1);
 }
@@ -44,8 +45,8 @@ function draw() {
 }
 
 function eventHandler(e) {
-  if (e.keyCode == 87) {snake.velocity = [0, 0.25]} // w key
-  if (e.keyCode == 83) {snake.velocity = [0, -0.25]} // s key
-  if (e.keyCode == 65) {snake.velocity = [-0.25, 0]} // a key
-  if (e.keyCode == 68) {snake.velocity = [0.25, 0]} // d key
+  if (e.keyCode == 87) {snake.velocity = [0, travelSpeed]} // w key
+  if (e.keyCode == 83) {snake.velocity = [0, -travelSpeed]} // s key
+  if (e.keyCode == 65) {snake.velocity = [-travelSpeed, 0]} // a key
+  if (e.keyCode == 68) {snake.velocity = [travelSpeed, 0]} // d key
 }
