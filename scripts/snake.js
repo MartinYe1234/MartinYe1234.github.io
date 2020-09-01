@@ -9,13 +9,14 @@ class Snake {
     this.x = x;
     this.y = y;
     this.velocity = velocity; // velocity is a list [x,y], representing x and y components of the snakes velocity
-    this.vx = this.velocity[0];
-    this.vy = -this.velocity[1]; // this is done so that a negative velocity will move player down the screen
+
   }
-  update(){
-  	//update our position
-  	this.y += this.vy;
-    this.x += this.vx;
+  update() {
+    var vx = this.velocity[0];
+    var vy = -this.velocity[1]; // this is done so that a negative velocity will 		move player down the screen
+    //update our position
+    this.y += vy;
+    this.x += vx;
   }
   draw(ctx) {
     ctx.fillStyle = this.color;
@@ -29,7 +30,7 @@ function startGame() {
   canvas.addEventListener('keydown', eventHandler, false); // add event listners
   canvas.addEventListener('keyup', eventHandler, false);
   // create our game piece
-  player = new Snake('red', 30, 30, 10, 120, [0,0]);
+  player = new Snake('red', 30, 30, 10, 120, [0, 0]);
 }
 
 // our draw function that constantly updates our canvas
@@ -41,8 +42,8 @@ function draw() {
 }
 
 function eventHandler(e) {
-	if (e.keyCode == 87) {player.vy = 0.25} // w key
-  if (e.keyCode == 83) {player.vy = -0.25} // s key
-  if (e.keyCode == 65) {player.vx = -0.25}	// a key
-  if (e.keyCode == 68) {player.vx = 0.25} // d key
+  if (e.keyCode == 87) {player.velocity = [0, 0.25]} // w key
+  if (e.keyCode == 83) {player.velocity = [0, -0.25]} // s key
+  if (e.keyCode == 65) {player.velocity = [-0.25, 0]} // a key
+  if (e.keyCode == 68) {player.velocity = [0.25, 0]} // d key
 }
