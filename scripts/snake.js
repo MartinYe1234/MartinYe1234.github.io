@@ -48,7 +48,6 @@ function draw() {
 }
 
 function eventHandler(event) {
-	var types = event.type;
+	var types = event.keyCode;
 	alert(types);
-	alert("1");
 }
