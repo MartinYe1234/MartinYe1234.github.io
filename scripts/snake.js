@@ -28,6 +28,19 @@ class Snake {
   }
 }
 
+class Food {
+	constructor(color, sideLength, x, y){
+		this.color = color;
+		this.sideLength = sideLength;
+		this.x = x;
+    this.y = y;
+	}
+  placeFood(ctx){
+  	ctx.fillStyle = this.color;
+    ctx.fillRect(this.x, this.y, this.sideLength, this.sideLength);
+  }
+}
+
 // function used to initiliaze necessary items on page load
 function startGame() {
   interval = setInterval(draw, 2); // set the refresh rate of the canvas
