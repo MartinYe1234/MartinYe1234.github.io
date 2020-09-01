@@ -1,5 +1,5 @@
-var canvas; // initialise canvas
-var context; // initialise context
+var canvas = document.getElementById("game"); // initialise canvas
+var context = canvas.getContext("2d"); // initialise context
 //this is the player
 class Snake {
   constructor(color, width, height, x, y, velocity) {
@@ -26,13 +26,10 @@ class Snake {
 // function used to initiliaze necessary items on page load
 function startGame() {
 	// create a canvas, context, dimensions and event listeners
-  canvas = document.createElement("canvas");
   canvas.width = 768;
   canvas.height = 768;
-  context = canvas.getContext("2d");
-  document.body.insertBefore(canvas, null);
   interval = setInterval(draw, 2);
-  canvas.addEventListener('keypress', eventHandler, false);
+  canvas.addEventListener('keydown', eventHandler, false);
   canvas.addEventListener('keyup', eventHandler, false);
   // create our game piece
   player = new Snake('red', 30, 30, 10, 120, [0,0]);
@@ -47,7 +44,6 @@ function draw() {
 }
 
 function eventHandler(e) {
-	alert(e.type);
 	if (e.keyCode == 87) {player.vy = 0.25} // w key
   if (e.keyCode == 83) {player.vy = -0.25} // s key
   if (e.keyCode == 65) {player.vx = -0.25}	// a key
