@@ -1,8 +1,9 @@
 canvas = document.getElementById("game"); // stores canvas
 context = canvas.getContext("2d"); // stores context
-var gameGrid = []; // split canvas up a 24x24 grid of 25 pixel squares
+// split canvas up to a 24x24 grid, each containing the position and state of the grid
+var gameGrid = []; // stored as [[x,y],state], where x and y is top left of grid, state describes what goes on in the grid
 var playerScore = 0;
-var travelSpeed = 0.2*1.04**playerScore; // speed at which snake moves is based on playerScore
+var travelSpeed = 0.2 * 1.04 ** playerScore; // speed at which snake moves is based on playerScore
 //this is the snake
 class Snake {
   constructor(color, width, height, x, y, velocity, length) {
@@ -12,7 +13,7 @@ class Snake {
     this.x = x;
     this.y = y;
     this.velocity = velocity; // velocity is a list [x,y], representing x and y components of the snakes velocity
-		this.length = length;
+    this.length = length;
 
   }
   update() {
@@ -29,14 +30,14 @@ class Snake {
 }
 
 class Food {
-	constructor(color, sideLength, x, y){
-		this.color = color;
-		this.sideLength = sideLength;
-		this.x = x;
+  constructor(color, sideLength, x, y) {
+    this.color = color;
+    this.sideLength = sideLength;
+    this.x = x;
     this.y = y;
-	}
-  placeFood(ctx){
-  	ctx.fillStyle = this.color;
+  }
+  placeFood(ctx) {
+    ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.sideLength, this.sideLength);
   }
 }
@@ -46,13 +47,8 @@ function startGame() {
   interval = setInterval(draw, 2); // set the refresh rate of the canvas
   canvas.addEventListener('keydown', eventHandler, false); // add event listners
   // create our game piece
-  snake = new Snake('red', 30, 30, 10, 120, [0, 0], 1);
-	generateGrid();
-}
-
-// function to generate the game grid
-function generateGrid(){
-	console.log(canvas.width);
+  snake = new Snake('red', 25, 25, 0, 25, [0, 0], 1);
+  generateGrid();
 }
 
 // our draw function that constantly updates our canvas
@@ -64,8 +60,26 @@ function draw() {
 }
 
 function eventHandler(e) {
-  if (e.keyCode == 87) {snake.velocity = [0, travelSpeed]} // w key
-  if (e.keyCode == 83) {snake.velocity = [0, -travelSpeed]} // s key
-  if (e.keyCode == 65) {snake.velocity = [-travelSpeed, 0]} // a key
-  if (e.keyCode == 68) {snake.velocity = [travelSpeed, 0]} // d key
+  if (e.keyCode == 87) {
+    snake.velocity = [0, travelSpeed]
+  } // w key
+  if (e.keyCode == 83) {
+    snake.velocity = [0, -travelSpeed]
+  } // s key
+  if (e.keyCode == 65) {
+    snake.velocity = [-travelSpeed, 0]
+  } // a key
+  if (e.keyCode == 68) {
+    snake.velocity = [travelSpeed, 0]
+  } // d key
+}
+
+function generateGrid() {
+  for (i = 0; i < 24; i++) {
+    gameGrid[i] = [];
+    for (j = 0; j < 24; j++) {
+      gameGrid[i][j] = [];
+      gameGrid[i][j] = [[j * 25, i * 25], -1] // reversed so rows will be together
+    }
+  }
 }
