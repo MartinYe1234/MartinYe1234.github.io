@@ -47,9 +47,7 @@ function draw() {
   player.update();
 }
 
-function eventHandler(event) {
-	var types = event.type;
-	alert(types);
+function eventHandler(e) {
 	if (e.keyCode == 87) {player.vy = 0.25} // w key
 
   if (e.keyCode == 83) {player.vy = -0.25} // s key
