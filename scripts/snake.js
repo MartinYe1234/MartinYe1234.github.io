@@ -48,5 +48,7 @@ function draw() {
 }
 
 function eventHandler(event) {
-	alert(event.type);
+	var types = event.type;
+	alert(types);
+	alert("1");
 }
