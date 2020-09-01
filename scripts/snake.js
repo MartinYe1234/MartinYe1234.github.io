@@ -48,8 +48,5 @@ function draw() {
 }
 
 function eventHandler(event) {
-  x = event.pageX;
-	y=event.pageY;
-	alert("X,Y="+x+","+y);
-	
+	alert(type.event);
 }
