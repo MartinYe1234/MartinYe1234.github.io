@@ -27,8 +27,8 @@ class Snake {
 function startGame() {
 	// create a canvas, context, dimensions and event listeners
   canvas = document.createElement("canvas");
-  canvas.width = 250;
-  canvas.height = 250;
+  canvas.width = 768;
+  canvas.height = 768;
   context = canvas.getContext("2d");
   document.body.insertBefore(this.canvas, null);
   interval = setInterval(draw, 2);
@@ -36,7 +36,7 @@ function startGame() {
   canvas.addEventListener('keyup', eventHandler, false);
 	canvas.addEventListener('mousedown', eventHandler, false);
   // create our game piece
-  player = new Snake('red', 30, 30, 10, 120, [0,0.1]);
+  player = new Snake('red', 30, 30, 10, 120, [0,0]);
 }
 
 // our draw function that constantly updates our canvas
