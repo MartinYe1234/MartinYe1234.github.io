@@ -4,7 +4,7 @@ var context; // stores context
 var gameGrid = []; // stored as [[x,y],state], where x and y is top left of grid, state describes what goes on in the grid
 var playerScore = 0;
 var travelSpeed = 0.2 * 1.04 ** playerScore; // speed at which snake moves is based on playerScore
-var foodPlaced = true; // if a Food Object exists
+var foodPlaced = false; // if a Food Object exists
 //this is the snake
 class Snake {
   constructor(color, width, height, x, y, velocity, length) {
@@ -38,8 +38,12 @@ class Food {
     this.y = y;
   }
   update(ctx, foodPlaced) {
+		var x1=genInt(), x2=genInt(), y1=genInt(), y2=genInt();
+		var foodX=gameGrid[x1][y1][0][0], foodY=gameGrid[x2][y2][0][1];
     // determine if food needs to be placed
-    if (foodPlaced == false){food = new Food('red', 25, gameGrid[genInt()][genInt()][0][0],gameGrid[genInt()][genInt()][0][1]);}
+    if (foodPlaced == false){
+			food = new Food('red', 25, foodX, foodY);}
+			gameGrid[foodX][foodY][1] = 0; // set to 0 to show that a food has been placed on this tile
     // draw food on canvas
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.sideLength, this.sideLength);
@@ -47,7 +51,7 @@ class Food {
 }
 
 // function used to initiliaze necessary items on page load
-function startGame() {
+function startGame(){
 	canvas = document.getElementById("game"); // stores canvas
 	context = canvas.getContext("2d"); // stores context
   var interval = setInterval(draw, 2); // set the refresh rate of the canvas
@@ -55,7 +59,6 @@ function startGame() {
   // create our game piece
   generateGrid();
   snake = new Snake('red', 25, 25, 0, 25, [0, 0], 1);
-  food = new Food('red', 25, gameGrid[genInt()][genInt()][0][0],gameGrid[genInt()][genInt()][0][1]);
 }
 
 // generates a random integer between 0 and 23 inclusive
