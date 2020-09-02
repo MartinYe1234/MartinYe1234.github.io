@@ -1,5 +1,5 @@
-var canvas = document.getElementById("game"); // stores canvas
-var context = canvas.getContext("2d"); // stores context
+var canvas; // stores canvas
+var context; // stores context
 // split canvas up to a 24x24 grid, each containing the position and state of the grid
 var gameGrid = []; // stored as [[x,y],state], where x and y is top left of grid, state describes what goes on in the grid
 var playerScore = 0;
@@ -48,8 +48,8 @@ class Food {
 
 // function used to initiliaze necessary items on page load
 function startGame() {
-	alert(canvas);
-	alert(context);
+	canvas = document.getElementById("game"); // stores canvas
+	context = canvas.getContext("2d"); // stores context
   var interval = setInterval(draw, 2); // set the refresh rate of the canvas
   canvas.addEventListener('keydown', eventHandler, false); // add event listners
   // create our game piece
