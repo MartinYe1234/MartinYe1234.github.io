@@ -45,8 +45,8 @@ class Food {
     // determine if food needs to be placed
     if (foodPlaced == false){
 			food = new Food(foodImage, foodX, foodY);
+			gameGrid[foodX][foodY][1] = 0; // set to 0 to show that a food has been placed on this tile
 		}
-		gameGrid[foodX][foodY][1] = 0; // set to 0 to show that a food has been placed on this tile
 		// draw food on canvas	
 		ctx.drawImage(food.img, foodX, foodY);
 		foodPlaced = true;
