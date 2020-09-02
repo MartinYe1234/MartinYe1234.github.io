@@ -96,4 +96,5 @@ function draw() {
   snake.draw(context);
   snake.update();
   food.update(context, foodPlaced);
+	alert("runs");
 }
