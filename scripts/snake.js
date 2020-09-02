@@ -95,7 +95,9 @@ function draw() {
 	alert("draw runs");
   //clear screen everytime
   context.clearRect(0, 0, canvas.width, canvas.height);
+	alert("clear runs");
   snake.draw(context);
+	alert("drawing of snake runs");
   snake.update();
   food.update(context, foodPlaced);
 	alert("evertything runs");
