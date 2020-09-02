@@ -3,7 +3,7 @@ var context; // stores context
 // split canvas up to a 24x24 grid, each containing the position and state of the grid
 var gameGrid = []; // stored as [[x,y],state], where x and y is top left of grid, state describes what goes on in the grid
 var playerScore = 0;
-var travelSpeed = 0.2 * 1.04 ** playerScore; // speed at which snake moves is based on playerScore
+var travelSpeed = 0.3 * 1.04 ** playerScore; // speed at which snake moves is based on playerScore
 var foodPlaced = false; // if a Food Object exists
 //this is the snake
 class Snake {
