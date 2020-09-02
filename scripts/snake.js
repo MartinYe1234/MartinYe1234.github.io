@@ -1,7 +1,9 @@
 var canvas; // stores canvas
 var context; // stores context
 // split canvas up to a 24x24 grid, each containing the position and state of the grid
-var gameGrid = []; // stored as [[x,y],state], where x and y is top left of grid, state describes what goes on in the grid
+// stored as [[x,y],state], where x and y is top left of grid
+// state -1 means empty, state 0 means food, state 1 means snake occupied
+var gameGrid = [];
 var playerScore = 0;
 var travelSpeed = 0.3 * 1.04 ** playerScore; // speed at which snake moves is based on playerScore
 var foodPlaced = false; // if a Food Object exists
@@ -38,15 +40,18 @@ class Food {
     this.y = y;
   }
   update(ctx, foodPlaced) {
-		var x1=genInt(), x2=genInt(), y1=genInt(), y2=genInt();
-		var foodX=gameGrid[x1][y1][0][0], foodY=gameGrid[x2][y2][0][1];
+		var x=genInt(), y=genInt();
+		var foodX=gameGrid[x][y][0][0], foodY=gameGrid[x][y][0][1]; // generate position to place food piece
     // determine if food needs to be placed
     if (foodPlaced == false){
+			ctx.drawImage(foodImg, foodX, foodY);
 			food = new Food('red', 25, foodX, foodY);}
 			gameGrid[foodX][foodY][1] = 0; // set to 0 to show that a food has been placed on this tile
+			foodPlaced = true;
     // draw food on canvas
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.sideLength, this.sideLength);
+		
   }
 }
 
