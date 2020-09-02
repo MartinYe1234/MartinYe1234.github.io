@@ -5,31 +5,53 @@ var context; // stores context
 // state -1 means empty, state 0 means food, state 1 means snake occupied
 var gameGrid = [];
 var playerScore = 0;
-var travelSpeed = 0.3 * 1.04 ** playerScore; // speed at which snake moves is based on playerScore
+var travelSpeed = 1; // speed at which snake moves is based on playerScore
 var foodPlaced = true; // if a Food Object exists
-var foodImage= new Image(25, 25);
+var foodImage = new Image(25, 25);
 //this is the snake
 class Snake {
-  constructor(color, width, height, x, y, velocity, length) {
+  constructor(color, sideLength, gridX, gridY, velocity) {
     this.color = color;
-    this.width = width;
-    this.height = height;
-    this.x = x;
-    this.y = y;
+    this.sideLength = sideLength;
+    this.gridX = gridX;
+    this.gridY = gridY;
     this.velocity = velocity; // velocity is a list [x,y], representing x and y components of the snakes velocity
-    this.length = length;
+    this.positioning = [
+      [this.gridX, this.gridY]
+    ];
 
   }
   update() {
     var vx = this.velocity[0];
     var vy = -this.velocity[1]; // this is done so that a negative velocity will 		move snake down the screen
     //update our position
-    this.y += vy;
-    this.x += vx;
+    let previousGrid = JSON.parse(JSON.stringify(this.positioning));
+    let headX = previousGrid[0][0],
+      headY = previousGrid[0][1]; // head of the snake
+    headY += vx;
+    headX += vy; // positioning must be changed// this if can be removed
+    if (this.positioning.length == 1) {
+      this.positioning[0] = [headX, headY];
+    } else { // for all lengths greater than 1
+      for (let i = 0; i < this.positioning.length; i++) { // update positioning
+        if (i == 0) {
+          this.positioning[0] = [headX, headY];
+        } else {
+          this.positioning[i] = [previousGrid[i - 1][0], previousGrid[i - 1][1]];
+        }
+      }
+    }
   }
   draw(ctx) {
     ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    for (let i = 0; i < this.positioning.length; i++) {
+      var gridX = this.positioning[i][0],
+        gridY = this.positioning[i][1];
+      var x = gameGrid[gridX][gridY][0][0],
+        y = gameGrid[gridX][gridY][0][1];
+      ctx.fillRect(x, y, this.sideLength, this.sideLength);
+    }
+
   }
 }
 
@@ -40,11 +62,13 @@ class Food {
     this.y = y;
   }
   update(ctx, foodPlaced) {
-    
+
     // determine if food needs to be placed
-    if (foodPlaced == false)	{
-    	var x=genInt(), y=genInt();
-      var foodX=gameGrid[x][y][0][0], foodY=gameGrid[x][y][0][1]; // generate position to place food piece
+    if (foodPlaced == false) {
+      var x = genInt(),
+        y = genInt();
+      var foodX = gameGrid[x][y][0][0],
+        foodY = gameGrid[x][y][0][1]; // generate position to place food piece
       food = new Food(foodX, foodY);
       gameGrid[foodX][foodY][1] = 0; // set to 0 to show that a food has been placed on this tile
     }
@@ -55,22 +79,22 @@ class Food {
 }
 
 // function used to initiliaze necessary items on page load
-function startGame(){
+function startGame() {
   canvas = document.getElementById("game"); // stores canvas
   context = canvas.getContext("2d"); // stores context
-  interval = setInterval(draw, 2); // set the refresh rate of the canvas
+  interval = setInterval(draw, 500); // set the refresh rate of the canvas
   canvas.addEventListener('keydown', eventHandler, false); // add event listners
   // create our game piece
   generateGrid();
-  foodImage.src = "../images/snakeFood.png";// load in images
-  snake = new Snake('red', 25, 25, 0, 25, [0, 0], 1); 
-  var x= genInt(), y=genInt();
-  var foodX=gameGrid[x][y][0][0], foodY=gameGrid[x][y][0][1];
-  food = new Food(foodX,foodY);
+  foodImage.src = "../images/snakeFood.png"; // load in images
+  snake = new Snake('red', 25, 1, 2, [0, 0]);
+  snake.positioning.push([1, 1]);
+  snake.positioning.push([1, 0]);
+  food = new Food(0, 0);
 }
 
 // generates a random integer between 0 and 23 inclusive
-function genInt(){
+function genInt() {
   var min = 0;
   var max = 23;
   return Math.floor(Math.random() * (max - min + 1) + min)
@@ -97,7 +121,9 @@ function generateGrid() {
     gameGrid[i] = [];
     for (let j = 0; j < 24; j++) {
       gameGrid[i][j] = [];
-      gameGrid[i][j] = [[j * 25, i * 25], -1] // reversed so rows will be together
+      gameGrid[i][j] = [
+        [j * 25, i * 25], -1
+      ] // reversed so rows will be together
     }
   }
 }
