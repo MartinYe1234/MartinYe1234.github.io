@@ -50,7 +50,7 @@ class Food {
 		// draw food on canvas	
 		ctx.drawImage(food.img, foodX, foodY);
 		foodPlaced = true;
-    	
+		alert("runs");
   }
 }
 
