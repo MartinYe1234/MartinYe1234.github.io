@@ -7,6 +7,7 @@ var gameGrid = [];
 var playerScore = 0;
 var travelSpeed = 0.3 * 1.04 ** playerScore; // speed at which snake moves is based on playerScore
 var foodPlaced = false; // if a Food Object exists
+var foodImage= new Image(25, 25);
 //this is the snake
 class Snake {
   constructor(color, width, height, x, y, velocity, length) {
@@ -33,9 +34,8 @@ class Snake {
 }
 
 class Food {
-  constructor(color, sideLength, x, y) {
-    this.color = color;
-    this.sideLength = sideLength;
+  constructor(img, x, y) {
+    this.img = img;
     this.x = x;
     this.y = y;
   }
@@ -44,14 +44,13 @@ class Food {
 		var foodX=gameGrid[x][y][0][0], foodY=gameGrid[x][y][0][1]; // generate position to place food piece
     // determine if food needs to be placed
     if (foodPlaced == false){
-			ctx.drawImage(foodImg, foodX, foodY);
-			food = new Food('red', 25, foodX, foodY);}
-			gameGrid[foodX][foodY][1] = 0; // set to 0 to show that a food has been placed on this tile
-			foodPlaced = true;
-    // draw food on canvas
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.sideLength, this.sideLength);
-		
+			food = new Food(foodImage, foodX, foodY);
+		}
+		gameGrid[foodX][foodY][1] = 0; // set to 0 to show that a food has been placed on this tile
+		// draw food on canvas	
+		ctx.drawImage(food.img, foodX, foodY);
+		foodPlaced = true;
+    	
   }
 }
 
@@ -64,6 +63,7 @@ function startGame(){
   // create our game piece
   generateGrid();
   snake = new Snake('red', 25, 25, 0, 25, [0, 0], 1);
+	foodImage.src = "../images/snakeFood.png";// load in images
 }
 
 // generates a random integer between 0 and 23 inclusive
