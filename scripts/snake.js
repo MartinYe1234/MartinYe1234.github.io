@@ -92,7 +92,7 @@ function generateGrid() {
 // our draw function that constantly updates our canvas
 function draw() {
   //clear screen everytime
-  context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  context.clearRect(0, 0, canvas.width, canvas.height);
   snake.draw(context);
   snake.update();
   food.update(context, foodPlaced);
