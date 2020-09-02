@@ -6,7 +6,7 @@ var context; // stores context
 var gameGrid = [];
 var playerScore = 0;
 var travelSpeed = 0.3 * 1.04 ** playerScore; // speed at which snake moves is based on playerScore
-var foodPlaced = false; // if a Food Object exists
+var foodPlaced = true; // if a Food Object exists
 var foodImage= new Image(25, 25);
 //this is the snake
 class Snake {
@@ -34,36 +34,39 @@ class Snake {
 }
 
 class Food {
-  constructor(img, x, y) {
-    this.img = img;
+  constructor(x, y) {
+    this.img = foodImage;
     this.x = x;
     this.y = y;
   }
   update(ctx, foodPlaced) {
-		var x=genInt(), y=genInt();
-		var foodX=gameGrid[x][y][0][0], foodY=gameGrid[x][y][0][1]; // generate position to place food piece
+    
     // determine if food needs to be placed
-    if (foodPlaced == false){
-			food = new Food(foodImage, foodX, foodY);
-			gameGrid[foodX][foodY][1] = 0; // set to 0 to show that a food has been placed on this tile
-		}
-		// draw food on canvas	
-		ctx.drawImage(food.img, foodX, foodY);
-		foodPlaced = true;
-		alert("runs");
+    if (foodPlaced == false)	{
+    	var x=genInt(), y=genInt();
+      var foodX=gameGrid[x][y][0][0], foodY=gameGrid[x][y][0][1]; // generate position to place food piece
+      food = new Food(foodX, foodY);
+      gameGrid[foodX][foodY][1] = 0; // set to 0 to show that a food has been placed on this tile
+    }
+    // draw food on canvas	
+    ctx.drawImage(food.img, food.x, food.y);
+    foodPlaced = true;
   }
 }
 
 // function used to initiliaze necessary items on page load
 function startGame(){
-	canvas = document.getElementById("game"); // stores canvas
-	context = canvas.getContext("2d"); // stores context
-  var interval = setInterval(draw, 2); // set the refresh rate of the canvas
+  canvas = document.getElementById("game"); // stores canvas
+  context = canvas.getContext("2d"); // stores context
+  interval = setInterval(draw, 200); // set the refresh rate of the canvas
   canvas.addEventListener('keydown', eventHandler, false); // add event listners
   // create our game piece
   generateGrid();
-  snake = new Snake('red', 25, 25, 0, 25, [0, 0], 1);
-	foodImage.src = "../images/snakeFood.png";// load in images
+  foodImage.src = "../images/snakeFood.png";// load in images
+  snake = new Snake('red', 25, 25, 0, 25, [0, 0], 1); 
+  var x= genInt(), y=genInt();
+  var foodX=gameGrid[x][y][0][0], foodY=gameGrid[x][y][0][1];
+  food = new Food(foodX,foodY);
 }
 
 // generates a random integer between 0 and 23 inclusive
