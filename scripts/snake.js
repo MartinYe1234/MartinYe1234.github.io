@@ -48,6 +48,7 @@ class Food {
 
 // function used to initiliaze necessary items on page load
 function startGame() {
+	alert("startgame runs");
   var interval = setInterval(draw, 2); // set the refresh rate of the canvas
   canvas.addEventListener('keydown', eventHandler, false); // add event listners
   // create our game piece
@@ -91,10 +92,11 @@ function generateGrid() {
 
 // our draw function that constantly updates our canvas
 function draw() {
+	alert("draw runs");
   //clear screen everytime
   context.clearRect(0, 0, canvas.width, canvas.height);
   snake.draw(context);
   snake.update();
   food.update(context, foodPlaced);
-	alert("runs");
+	alert("evertything runs");
 }
