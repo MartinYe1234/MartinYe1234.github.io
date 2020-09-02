@@ -4,6 +4,7 @@ context = canvas.getContext("2d"); // stores context
 var gameGrid = []; // stored as [[x,y],state], where x and y is top left of grid, state describes what goes on in the grid
 var playerScore = 0;
 var travelSpeed = 0.2 * 1.04 ** playerScore; // speed at which snake moves is based on playerScore
+var foodPlaced = true; // if a Food Object exists
 //this is the snake
 class Snake {
   constructor(color, width, height, x, y, velocity, length) {
@@ -36,7 +37,10 @@ class Food {
     this.x = x;
     this.y = y;
   }
-  placeFood(ctx) {
+  update(ctx, foodPlaced) {
+    // determine if food needs to be placed
+    if (foodPlaced == false){food = new Food('red', 25, gameGrid[genInt()][genInt()][0][0],gameGrid[genInt()][genInt()][0][1]);}
+    // draw food on canvas
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.sideLength, this.sideLength);
   }
@@ -47,18 +51,19 @@ function startGame() {
   interval = setInterval(draw, 2); // set the refresh rate of the canvas
   canvas.addEventListener('keydown', eventHandler, false); // add event listners
   // create our game piece
-  snake = new Snake('red', 25, 25, 0, 25, [0, 0], 1);
   generateGrid();
+  snake = new Snake('red', 25, 25, 0, 25, [0, 0], 1);
+  food = new Food('red', 25, gameGrid[genInt()][genInt()][0][0],gameGrid[genInt()][genInt()][0][1]);
 }
 
-// our draw function that constantly updates our canvas
-function draw() {
-  //clear screen everytime
-  context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  snake.draw(context);
-  snake.update();
+// generates a random integer between 0 and 23 inclusive
+function genInt(){
+  var min = 0;
+  var max = 23;
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+// handles all keyboard events
 function eventHandler(e) {
   if (e.keyCode == 87) {
     snake.velocity = [0, travelSpeed]
@@ -82,4 +87,13 @@ function generateGrid() {
       gameGrid[i][j] = [[j * 25, i * 25], -1] // reversed so rows will be together
     }
   }
+}
+
+// our draw function that constantly updates our canvas
+function draw() {
+  //clear screen everytime
+  context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  snake.draw(context);
+  snake.update();
+  food.update(context, foodPlaced);
 }
