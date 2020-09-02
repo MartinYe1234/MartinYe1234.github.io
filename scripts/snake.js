@@ -1,5 +1,5 @@
-canvas = document.getElementById("game"); // stores canvas
-context = canvas.getContext("2d"); // stores context
+var canvas = document.getElementById("game"); // stores canvas
+var context = canvas.getContext("2d"); // stores context
 // split canvas up to a 24x24 grid, each containing the position and state of the grid
 var gameGrid = []; // stored as [[x,y],state], where x and y is top left of grid, state describes what goes on in the grid
 var playerScore = 0;
