@@ -80,9 +80,9 @@ function eventHandler(e) {
 }
 
 function generateGrid() {
-  for (i = 0; i < 24; i++) {
+  for (let i = 0; i < 24; i++) {
     gameGrid[i] = [];
-    for (j = 0; j < 24; j++) {
+    for (let j = 0; j < 24; j++) {
       gameGrid[i][j] = [];
       gameGrid[i][j] = [[j * 25, i * 25], -1] // reversed so rows will be together
     }
