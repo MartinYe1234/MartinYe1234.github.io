@@ -90,16 +90,16 @@ function genInt() {
 
 // handles all keyboard events
 function eventHandler(e) {
-  if (e.keyCode == 87) {
+  if ((e.keyCode == 87) && (snake.velocity[0] <= 0)) {
     snake.velocity = [-travelSpeed, 0]
   } // w key
-  if (e.keyCode == 83) {
+  if ((e.keyCode == 83) && (snake.velocity[0] >= 0)) {
     snake.velocity = [travelSpeed, 0]
   } // s key
-  if (e.keyCode == 65) {
+  if ((e.keyCode == 65) && (snake.velocity[1] >= 0)) {
     snake.velocity = [0, travelSpeed]
   } // a key
-  if (e.keyCode == 68) {
+  if ((e.keyCode == 68) && (snake.velocity[1] <= 0)) {
     snake.velocity = [0, -travelSpeed]
   } // d key
 }
@@ -126,13 +126,13 @@ function draw() {
   updateGame(snake, food);
 }
 
-function collision(p1, p2){// checks for collisions
+function equals(p1, p2){// checks for collisions
   return JSON.stringify(p1)==JSON.stringify(p2);
 }
 
 function updateGame(player, food){ // checks for collisions
   // check if snake eats food
-  if (collision(player.positioning[0], [food.gridX, food.gridY])){ 
+  if (equals(player.positioning[0], [food.gridX, food.gridY])){ 
     food.gridX = genInt();
     food.gridY = genInt();
     let last = player.positioning[player.positioning.length-1];
