@@ -28,8 +28,8 @@ class Snake {
     let previousGrid = JSON.parse(JSON.stringify(this.positioning));
     let headX = previousGrid[0][0],
       headY = previousGrid[0][1]; // head of the snake
-    headY += vx;
-    headX += vy; // positioning must be changed// this if can be removed
+    headY += vy;
+    headX += vx; // positioning must be changed// this if can be removed
     if (this.positioning.length == 1) {
       this.positioning[0] = [headX, headY];
     } else { // for all lengths greater than 1
@@ -89,7 +89,7 @@ function startGame() {
   snake = new Snake('red', 25, 1, 2, [0, 0]);
   snake.positioning.push([1, 1]);
   snake.positioning.push([1, 0]);
-  food = new Food(2, 2);
+  food = new Food(2, 5);
 }
 
 // generates a random integer between 0 and 23 inclusive
@@ -102,16 +102,16 @@ function genInt() {
 // handles all keyboard events
 function eventHandler(e) {
   if (e.keyCode == 87) {
-    snake.velocity = [0, travelSpeed]
+  	snake.velocity = [-travelSpeed, 0]
   } // w key
   if (e.keyCode == 83) {
-    snake.velocity = [0, -travelSpeed]
+  	snake.velocity = [travelSpeed, 0]
   } // s key
   if (e.keyCode == 65) {
-    snake.velocity = [-travelSpeed, 0]
+    snake.velocity = [0, travelSpeed]
   } // a key
   if (e.keyCode == 68) {
-    snake.velocity = [travelSpeed, 0]
+  	snake.velocity = [0, -travelSpeed]
   } // d key
 }
 
