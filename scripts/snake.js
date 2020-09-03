@@ -4,9 +4,10 @@ var context; // stores context
 // stored as [[x,y],state], where x and y is top left of grid
 // state -1 means empty, state 0 means food, state 1 means snake occupied
 var gameGrid = [];
-var playerScore = 0;
+var eventQueue = [];
 var travelSpeed = 1; // speed at which snake moves is based on playerScore
 var foodImage = new Image(25, 25);
+var timeToMove = 1;
 //this is the snake
 class Snake {
   constructor(color, sideLength, gridX, gridY, velocity) {
@@ -18,25 +19,27 @@ class Snake {
     this.positioning = [
       [this.gridX, this.gridY]
     ];
-
   }
   update() {
-    var vx = this.velocity[0];
-    var vy = -this.velocity[1]; // this is done so that a negative velocity will 		move snake down the screen
-    //update our position
-    let previousGrid = JSON.parse(JSON.stringify(this.positioning));
-    let headX = previousGrid[0][0],
-      headY = previousGrid[0][1]; // head of the snake
-    headY += vy;
-    headX += vx; // positioning must be changed// this if can be removed
-    if (this.positioning.length == 1) {
-      this.positioning[0] = [headX, headY];
-    } else { // for all lengths greater than 1
-      for (let i = 0; i < this.positioning.length; i++) { // update positioning
-        if (i == 0) {
-          this.positioning[0] = [headX, headY];
-        } else {
-          this.positioning[i] = [previousGrid[i - 1][0], previousGrid[i - 1][1]];
+    if (timeToMove < 0) {
+    	timeToMove = 1;
+      let vx = this.velocity[0];
+      let vy = -this.velocity[1]; // this is done so that a negative velocity will 		move snake down the screen
+      //update our position
+      let previousGrid = JSON.parse(JSON.stringify(this.positioning));
+      let headX = previousGrid[0][0],
+        headY = previousGrid[0][1]; // head of the snake
+      headY += vy;
+      headX += vx; // positioning must be changed// this if can be removed
+      if (this.positioning.length == 1) {
+        this.positioning[0] = [headX, headY];
+      } else { // for all lengths greater than 1
+        for (let i = 0; i < this.positioning.length; i++) { // update positioning
+          if (i == 0) {
+            this.positioning[0] = [headX, headY];
+          } else {
+            this.positioning[i] = [previousGrid[i - 1][0], previousGrid[i - 1][1]];
+          }
         }
       }
     }
@@ -62,7 +65,7 @@ class Food {
   }
   update(ctx) {
     let foodX = gameGrid[this.gridX][this.gridY][0][0],
-        foodY = gameGrid[this.gridX][this.gridY][0][1]; // generate position to place food piece
+      foodY = gameGrid[this.gridX][this.gridY][0][1]; // generate position to place food piece
     // draw food on canvas	
     ctx.drawImage(food.img, foodX, foodY);
   }
@@ -72,7 +75,7 @@ class Food {
 function startGame() {
   canvas = document.getElementById("game"); // stores canvas
   context = canvas.getContext("2d"); // stores context
-  interval = setInterval(draw, 500); // set the refresh rate of the canvas
+  interval = setInterval(draw, 2); // set the refresh rate of the canvas
   canvas.addEventListener('keydown', eventHandler, false); // add event listners
   // create our game piece
   generateGrid();
@@ -90,18 +93,19 @@ function genInt() {
 
 // handles all keyboard events
 function eventHandler(e) {
-  if ((e.keyCode == 87) && (snake.velocity[0] <= 0)) {
+  if ((e.key == "w") && (snake.velocity[0] <= 0)) {
     snake.velocity = [-travelSpeed, 0]
   } // w key
-  if ((e.keyCode == 83) && (snake.velocity[0] >= 0)) {
+  else if ((e.key == "s") && (snake.velocity[0] >= 0)) {
     snake.velocity = [travelSpeed, 0]
   } // s key
-  if ((e.keyCode == 65) && (snake.velocity[1] >= 0)) {
+  else if ((e.key == "a") && (snake.velocity[1] >= 0)) {
     snake.velocity = [0, travelSpeed]
   } // a key
-  if ((e.keyCode == 68) && (snake.velocity[1] <= 0)) {
+  else if ((e.key == "d") && (snake.velocity[1] <= 0)) {
     snake.velocity = [0, -travelSpeed]
   } // d key
+
 }
 
 function generateGrid() {
@@ -126,16 +130,18 @@ function draw() {
   updateGame(snake, food);
 }
 
-function equals(p1, p2){// checks for collisions
-  return JSON.stringify(p1)==JSON.stringify(p2);
+function equals(p1, p2) { // checks when two arrays are equal to each other
+  return JSON.stringify(p1) == JSON.stringify(p2);
 }
 
-function updateGame(player, food){ // checks for collisions
+function updateGame(player, food) { // checks for collisions
+  // for movement of snake
+  timeToMove -= (1.1**snake.positioning.length)/100;
   // check if snake eats food
-  if (equals(player.positioning[0], [food.gridX, food.gridY])){ 
+  if (equals(player.positioning[0], [food.gridX, food.gridY])) {
     food.gridX = genInt();
     food.gridY = genInt();
-    let last = player.positioning[player.positioning.length-1];
+    let last = player.positioning[player.positioning.length - 1];
     player.positioning.push(last);
   }
 }
