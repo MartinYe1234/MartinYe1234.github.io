@@ -56,24 +56,23 @@ class Snake {
 }
 
 class Food {
-  constructor(x, y) {
+  constructor(gridX, gridY) {
     this.img = foodImage;
-    this.x = x;
-    this.y = y;
+    this.gridX = gridX;
+    this.gridY = gridY;
   }
   update(ctx, foodPlaced) {
 
     // determine if food needs to be placed
     if (foodPlaced == false) {
-      var x = genInt(),
-        y = genInt();
-      var foodX = gameGrid[x][y][0][0],
-        foodY = gameGrid[x][y][0][1]; // generate position to place food piece
-      food = new Food(foodX, foodY);
-      gameGrid[foodX][foodY][1] = 0; // set to 0 to show that a food has been placed on this tile
+      var gridX = genInt(),
+        gridY = genInt();
+      food = new Food(gridX, gridY);
     }
+    let foodX = gameGrid[this.gridX][this.gridY][0][0],
+        foodY = gameGrid[this.gridX][this.gridY][0][1]; // generate position to place food piece
     // draw food on canvas	
-    ctx.drawImage(food.img, food.x, food.y);
+    ctx.drawImage(food.img, foodX, foodY);
     foodPlaced = true;
   }
 }
@@ -82,7 +81,7 @@ class Food {
 function startGame() {
   canvas = document.getElementById("game"); // stores canvas
   context = canvas.getContext("2d"); // stores context
-  interval = setInterval(draw, 250); // set the refresh rate of the canvas
+  interval = setInterval(draw, 500); // set the refresh rate of the canvas
   canvas.addEventListener('keydown', eventHandler, false); // add event listners
   // create our game piece
   generateGrid();
@@ -90,7 +89,7 @@ function startGame() {
   snake = new Snake('red', 25, 1, 2, [0, 0]);
   snake.positioning.push([1, 1]);
   snake.positioning.push([1, 0]);
-  food = new Food(0, 0);
+  food = new Food(2, 2);
 }
 
 // generates a random integer between 0 and 23 inclusive
@@ -135,4 +134,16 @@ function draw() {
   snake.draw(context);
   snake.update();
   food.update(context, foodPlaced);
+  updateGame(snake, food);
+}
+
+function collision(p1, p2){// checks for collisions
+  return JSON.stringify(p1)==JSON.stringify(p2);
+}
+
+function updateGame(player, food){ // checks for collisions
+  // check if snake eats food
+  if (collision(player.positioning[0], [food.gridX, food.gridY])){ 
+    alert("collision");
+  }
 }
