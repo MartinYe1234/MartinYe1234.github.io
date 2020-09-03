@@ -6,7 +6,6 @@ var context; // stores context
 var gameGrid = [];
 var playerScore = 0;
 var travelSpeed = 1; // speed at which snake moves is based on playerScore
-var foodPlaced = true; // if a Food Object exists
 var foodImage = new Image(25, 25);
 //this is the snake
 class Snake {
@@ -61,19 +60,11 @@ class Food {
     this.gridX = gridX;
     this.gridY = gridY;
   }
-  update(ctx, foodPlaced) {
-
-    // determine if food needs to be placed
-    if (foodPlaced == false) {
-      var gridX = genInt(),
-        gridY = genInt();
-      food = new Food(gridX, gridY);
-    }
+  update(ctx) {
     let foodX = gameGrid[this.gridX][this.gridY][0][0],
         foodY = gameGrid[this.gridX][this.gridY][0][1]; // generate position to place food piece
     // draw food on canvas	
     ctx.drawImage(food.img, foodX, foodY);
-    foodPlaced = true;
   }
 }
 
@@ -102,16 +93,16 @@ function genInt() {
 // handles all keyboard events
 function eventHandler(e) {
   if (e.keyCode == 87) {
-  	snake.velocity = [-travelSpeed, 0]
+    snake.velocity = [-travelSpeed, 0]
   } // w key
   if (e.keyCode == 83) {
-  	snake.velocity = [travelSpeed, 0]
+    snake.velocity = [travelSpeed, 0]
   } // s key
   if (e.keyCode == 65) {
     snake.velocity = [0, travelSpeed]
   } // a key
   if (e.keyCode == 68) {
-  	snake.velocity = [0, -travelSpeed]
+    snake.velocity = [0, -travelSpeed]
   } // d key
 }
 
@@ -133,7 +124,7 @@ function draw() {
   context.clearRect(0, 0, canvas.width, canvas.height);
   snake.draw(context);
   snake.update();
-  food.update(context, foodPlaced);
+  food.update(context);
   updateGame(snake, food);
 }
 
@@ -144,6 +135,7 @@ function collision(p1, p2){// checks for collisions
 function updateGame(player, food){ // checks for collisions
   // check if snake eats food
   if (collision(player.positioning[0], [food.gridX, food.gridY])){ 
-    alert("collision");
+    food.gridX = genInt();
+    food.gridY = genInt();
   }
 }
