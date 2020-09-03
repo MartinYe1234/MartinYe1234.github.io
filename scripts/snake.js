@@ -72,14 +72,12 @@ class Food {
 function startGame() {
   canvas = document.getElementById("game"); // stores canvas
   context = canvas.getContext("2d"); // stores context
-  interval = setInterval(draw, 100); // set the refresh rate of the canvas
+  interval = setInterval(draw, 500); // set the refresh rate of the canvas
   canvas.addEventListener('keydown', eventHandler, false); // add event listners
   // create our game piece
   generateGrid();
   foodImage.src = "../images/snakeFood.png"; // load in images
   snake = new Snake('red', 25, 1, 2, [0, 0]);
-  snake.positioning.push([1, 1]);
-  snake.positioning.push([1, 0]);
   food = new Food(2, 5);
 }
 
@@ -137,5 +135,7 @@ function updateGame(player, food){ // checks for collisions
   if (collision(player.positioning[0], [food.gridX, food.gridY])){ 
     food.gridX = genInt();
     food.gridY = genInt();
+    let last = player.positioning[player.positioning.length-1];
+    player.positioning.push(last);
   }
 }
