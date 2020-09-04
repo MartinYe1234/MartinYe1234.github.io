@@ -21,8 +21,6 @@ class Snake {
     ];
   }
   update() {
-		// for movement of snake
-		timeToMove -= (1.1 ** snake.positioning.length) / 100;
     if (timeToMove < 0) {
       timeToMove = 1;
       eventHandler(eventQueue.shift());
@@ -85,9 +83,9 @@ function startGame() {
   }, false); // add event listners
   // create our game piece
   generateGrid();
-  foodImage.src = "../images/snakeFood.png"; // load in images
-  snake = new Snake('red', 25, 1, 2, [0, 0]);
-  food = new Food(2, 5);
+  foodImage.src = "https://i.imgur.com/stVhVK1.png"; // load in images
+  snake = new Snake('red', 25, 11, 11, [0, 0]);
+  food = new Food(genInt(), genInt());
 }
 
 // generates a random integer between 0 and 23 inclusive
@@ -141,6 +139,8 @@ function equals(p1, p2) { // checks for collisions
 }
 
 function updateGame(player, food) { // checks for collisions
+  // for movement of snake
+  timeToMove -= (1.1 ** snake.positioning.length) / 100;
   // check if snake eats food
   if (equals(player.positioning[0], [food.gridX, food.gridY])) {
     food.gridX = genInt();
@@ -148,4 +148,14 @@ function updateGame(player, food) { // checks for collisions
     let last = player.positioning[player.positioning.length - 1];
     player.positioning.push(last);
   }
+  // check if the player dies, occurs when player strikes themselves
+  if (player.positioning.length > 4) { //only possible when player is longer than 4 	
+  let head = player.positioning[0];
+    for (let i = 3; i < player.positioning.length; i++) {
+			if(equals(head, player.positioning[i])){
+      	startGame();
+      }
+    }
+  }
+
 }
