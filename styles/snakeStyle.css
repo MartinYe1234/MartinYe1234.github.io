@@ -10,13 +10,16 @@
 
 canvas {
   border: 1px solid black;
-  background: url(../images/snakeBackground.png);
+  background: url(.x./images/snakeBackground.png);
 	position: fixed;
 }
 
 /* controls big banner at the very top of the page */
 header{
 	background: url(../images/snakeGameBANNER.png);
+	background-size: 100% 100%;
+  width: 100%;
+  height: 128px;
 }
 
 /* Intro screen background */
