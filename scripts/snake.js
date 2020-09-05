@@ -5,9 +5,10 @@ var context; // stores context
 // state -1 means empty, state 0 means food, state 1 means snake occupied
 var gameGrid = [];
 var eventQueue = [];
-var travelSpeed; // speed at which snake moves is based on playerScore
+var travelSpeed = 1; // speed at which snake moves is based on playerScore
 var foodImage = new Image(25, 25);
-var timeToMove;
+var timeToMove = 1;
+var introToggled = false;
 //this is the snake
 class Snake {
   constructor(color, sideLength, gridX, gridY, velocity) {
@@ -31,10 +32,11 @@ class Snake {
       let headX = previousGrid[0][0],
         headY = previousGrid[0][1]; // head of the snake
       headY += vy;
-      headX += vx; 
+      headX += vx;
       // check for player crossing out side of edges
-      if (headX > 23 || headX < 0 || headY < 0 || headY > 23){
-      	startGame();
+      if (headX > 23 || headX < 0 || headY < 0 || headY > 23) {
+        console.log(timeToMove);
+        startGame();
       }
       if (this.positioning.length == 1) { // move the snake
         this.positioning[0] = [headX, headY];
@@ -46,6 +48,7 @@ class Snake {
             this.positioning[i] = [previousGrid[i - 1][0], previousGrid[i - 1][1]];
           }
         }
+
       }
       // check if the player dies, occurs when player strikes themselves
       if (this.positioning.length > 4) { //only possible when player is longer than 4 	
@@ -56,6 +59,8 @@ class Snake {
           }
         }
       }
+
+
     }
   }
   draw(ctx) {
@@ -67,6 +72,7 @@ class Snake {
         y = gameGrid[gridX][gridY][0][1];
       ctx.fillRect(x, y, this.sideLength, this.sideLength);
     }
+
   }
 }
 
@@ -86,8 +92,6 @@ class Food {
 
 // function used to initiliaze necessary items on page load
 function startGame() {
-	travelSpeed = 1
-	timeToMove = 1;
   canvas = document.getElementById("game"); // stores canvas
   context = canvas.getContext("2d"); // stores context
   interval = setInterval(draw, 2); // set the refresh rate of the canvas
@@ -99,6 +103,7 @@ function startGame() {
   foodImage.src = "../images/snakeFood.png"; // load in images
   snake = new Snake('red', 25, 11, 11, [0, 0]);
   food = new Food(genInt(), genInt());
+  toggleIntro();
 }
 
 // generates a random integer between 0 and 23 inclusive
@@ -165,7 +170,14 @@ function updateGame(player, food) { // checks for collisions
 
 }
 
-function closeIntro() {
-  var startScreen = document.getElementbyId("intro");
-  startScreen.sytle.display = "block";
+function toggleIntro() { // used to start and end screens
+	console.log("f ran");
+  var startScreen = document.getElementById("intro");
+  if (introToggled) {
+  	startScreen.style.display = "none";
+  } else {
+    startScreen.style.display = "block";
+  }
+  introToggled = !introToggled;
+  console.log(introToggled);
 }
