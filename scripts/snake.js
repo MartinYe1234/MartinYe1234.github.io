@@ -5,9 +5,9 @@ var context; // stores context
 // state -1 means empty, state 0 means food, state 1 means snake occupied
 var gameGrid = [];
 var eventQueue = [];
-var travelSpeed = 1; // speed at which snake moves is based on playerScore
+var travelSpeed; // speed at which snake moves is based on playerScore
 var foodImage = new Image(25, 25);
-var timeToMove = 1;
+var timeToMove;
 //this is the snake
 class Snake {
   constructor(color, sideLength, gridX, gridY, velocity) {
@@ -86,6 +86,8 @@ class Food {
 
 // function used to initiliaze necessary items on page load
 function startGame() {
+	travelSpeed = 1
+	timeToMove = 1;
   canvas = document.getElementById("game"); // stores canvas
   context = canvas.getContext("2d"); // stores context
   interval = setInterval(draw, 2); // set the refresh rate of the canvas
