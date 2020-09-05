@@ -38,18 +38,19 @@ header{
   background-color: rgb(0, 200, 55);
   margin: auto;
   padding: 20px;
-  border: 1px solid #888;
+  border: 1px solid dimgrey;
   width: 80%;
 }
 /* The Close Button */
 .close {
-  color: #aaaaaa;
+  color: dimgrey;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 .close:hover {
-  color: #000;
+  color: rgb(0, 0, 0);
+	border: 2px solid black;
   text-decoration: none;
   cursor: pointer;
 }
