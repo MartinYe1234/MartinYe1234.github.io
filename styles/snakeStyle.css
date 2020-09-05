@@ -16,11 +16,8 @@ canvas {
 }
 
 /* controls big banner at the very top of the page */
-
-.snakeBanner {
+header{
 	background: url(../images/snakeGameBANNER.png);
-  border: none;
-  width: 100%;
 }
 
 /* Intro screen background */
