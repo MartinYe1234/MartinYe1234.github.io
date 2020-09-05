@@ -31,8 +31,12 @@ class Snake {
       let headX = previousGrid[0][0],
         headY = previousGrid[0][1]; // head of the snake
       headY += vy;
-      headX += vx; // positioning must be changed// this if can be removed
-      if (this.positioning.length == 1) {
+      headX += vx; 
+      // check for player crossing out side of edges
+      if (headX > 23 || headX < 0 || headY < 0 || headY > 23){
+      	startGame();
+      }
+      if (this.positioning.length == 1) { // move the snake
         this.positioning[0] = [headX, headY];
       } else { // for all lengths greater than 1
         for (let i = 0; i < this.positioning.length; i++) { // update positioning
@@ -42,7 +46,15 @@ class Snake {
             this.positioning[i] = [previousGrid[i - 1][0], previousGrid[i - 1][1]];
           }
         }
-
+      }
+      // check if the player dies, occurs when player strikes themselves
+      if (this.positioning.length > 4) { //only possible when player is longer than 4 	
+        let head = this.positioning[0];
+        for (let i = 3; i < this.positioning.length; i++) {
+          if (equals(head, this.positioning[i])) {
+            startGame();
+          }
+        }
       }
     }
   }
@@ -55,7 +67,6 @@ class Snake {
         y = gameGrid[gridX][gridY][0][1];
       ctx.fillRect(x, y, this.sideLength, this.sideLength);
     }
-
   }
 }
 
@@ -83,7 +94,7 @@ function startGame() {
   }, false); // add event listners
   // create our game piece
   generateGrid();
-  foodImage.src = "https://i.imgur.com/stVhVK1.png"; // load in images
+  foodImage.src = "../images/snakeFood.png"; // load in images
   snake = new Snake('red', 25, 11, 11, [0, 0]);
   food = new Food(genInt(), genInt());
 }
@@ -148,14 +159,11 @@ function updateGame(player, food) { // checks for collisions
     let last = player.positioning[player.positioning.length - 1];
     player.positioning.push(last);
   }
-  // check if the player dies, occurs when player strikes themselves
-  if (player.positioning.length > 4) { //only possible when player is longer than 4 	
-  let head = player.positioning[0];
-    for (let i = 3; i < player.positioning.length; i++) {
-			if(equals(head, player.positioning[i])){
-      	startGame();
-      }
-    }
-  }
 
+
+}
+
+function closeIntro() {
+  var startScreen = document.getElementbyId("intro");
+  startScreen.sytle.display = "block";
 }
