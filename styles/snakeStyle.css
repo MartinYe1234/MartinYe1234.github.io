@@ -60,3 +60,6 @@ header{
   text-decoration: none;
   cursor: pointer;
 }
+*{
+	font-family: Monospace;
+}
