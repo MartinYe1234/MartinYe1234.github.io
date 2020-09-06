@@ -10,7 +10,7 @@
 
 canvas {
   border: 1px solid black;
-  background: url(.x./images/snakeBackground.png);
+  background: url(../images/snakeBackground.png);
 	position: fixed;
 }
 
