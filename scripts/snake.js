@@ -96,7 +96,7 @@ function startGame() {
   // create our game piece
   generateGrid();
   foodImage.src = "../images/snakeFood.png"; // load in images
-  snake = new Snake('red', 25, 11, 11, [0, 0]);
+  snake = new Snake('rgb(18,178,0)', 25, 11, 11, [0, 0]);
   food = new Food(genInt(), genInt());
   toggleIntro();
 }
