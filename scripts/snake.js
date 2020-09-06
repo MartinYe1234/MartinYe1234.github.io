@@ -159,7 +159,7 @@ function equals(p1, p2) { // checks for collisions
 
 function updateGame(player, food) { // checks for collisions
   // for movement of snake
-  timeToMove -= 0.03 + player.positioning.length/50;
+  timeToMove -= 0.03 + player.positioning.length/100;
   // check if snake eats food
   if (equals(player.positioning[0], [food.gridX, food.gridY])) {
     food.gridX = genInt();
