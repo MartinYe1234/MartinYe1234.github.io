@@ -102,9 +102,9 @@ function startGame() {
 }
 
 function restartGame(){ // after first respawn
+	toggleIntro();
 	snake = new Snake('rgb(18,178,0)', 25, 11, 11, [0, 0]);
   food = new Food(genInt(), genInt());
-  toggleIntro();
 }
 
 // generates a random integer between 0 and 23 inclusive
@@ -159,7 +159,7 @@ function equals(p1, p2) { // checks for collisions
 
 function updateGame(player, food) { // checks for collisions
   // for movement of snake
-  timeToMove -= 0.05;
+  timeToMove -= 0.01 * player.positioning.length;
   // check if snake eats food
   if (equals(player.positioning[0], [food.gridX, food.gridY])) {
     food.gridX = genInt();
@@ -171,10 +171,13 @@ function updateGame(player, food) { // checks for collisions
 
 function toggleIntro() { // used to start and end screens
   var startScreen = document.getElementById("intro");
+  var score = snake.positioning.length-1;
+  var message = "Previous Score: "+ score.toString(10);
   if (introToggled) {
-  	startScreen.style.display = "none";
+    startScreen.style.display = "none";
   } else {
     startScreen.style.display = "block";
   }
+  document.getElementById("score").innerHTML = message;
   introToggled = !introToggled;
 }
