@@ -94,7 +94,7 @@ function startGame() {
   canvas = document.getElementById("game"); // stores canvas
   context = canvas.getContext("2d"); // stores context
   interval = setInterval(draw, 2); // set the refresh rate of the canvas
-  canvas.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown', function(e) {
     eventQueue.push(e.key);
   }, false); // add event listners
   // create our game piece
