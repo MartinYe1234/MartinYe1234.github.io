@@ -35,7 +35,7 @@ class Snake {
       headX += vx;
       // check for player crossing out side of edges
       if (headX > 23 || headX < 0 || headY < 0 || headY > 23) {
-        startGame();
+        restartGame();
       }
       if (this.positioning.length == 1) { // move the snake
         this.positioning[0] = [headX, headY];
@@ -47,19 +47,16 @@ class Snake {
             this.positioning[i] = [previousGrid[i - 1][0], previousGrid[i - 1][1]];
           }
         }
-
       }
       // check if the player dies, occurs when player strikes themselves
       if (this.positioning.length > 4) { //only possible when player is longer than 4 	
         let head = this.positioning[0];
         for (let i = 3; i < this.positioning.length; i++) {
           if (equals(head, this.positioning[i])) {
-            startGame();
+            restartGame();
           }
         }
       }
-
-
     }
   }
   draw(ctx) {
@@ -71,7 +68,6 @@ class Snake {
         y = gameGrid[gridX][gridY][0][1];
       ctx.fillRect(x, y, this.sideLength, this.sideLength);
     }
-
   }
 }
 
@@ -93,7 +89,7 @@ class Food {
 function startGame() {
   canvas = document.getElementById("game"); // stores canvas
   context = canvas.getContext("2d"); // stores context
-  interval = setInterval(draw, 2); // set the refresh rate of the canvas
+  interval = setInterval(draw, 20); // set the refresh rate of the canvas
   document.addEventListener('keydown', function(e) {
     eventQueue.push(e.key);
   }, false); // add event listners
@@ -101,6 +97,12 @@ function startGame() {
   generateGrid();
   foodImage.src = "../images/snakeFood.png"; // load in images
   snake = new Snake('red', 25, 11, 11, [0, 0]);
+  food = new Food(genInt(), genInt());
+  toggleIntro();
+}
+
+function restartGame(){ // after first respawn
+	snake = new Snake('red', 25, 11, 11, [0, 0]);
   food = new Food(genInt(), genInt());
   toggleIntro();
 }
@@ -157,7 +159,7 @@ function equals(p1, p2) { // checks for collisions
 
 function updateGame(player, food) { // checks for collisions
   // for movement of snake
-  timeToMove -= (1.1 ** player.positioning.length) / 100;
+  timeToMove -= 0.05;
   // check if snake eats food
   if (equals(player.positioning[0], [food.gridX, food.gridY])) {
     food.gridX = genInt();
@@ -165,8 +167,6 @@ function updateGame(player, food) { // checks for collisions
     let last = player.positioning[player.positioning.length - 1];
     player.positioning.push(last);
   }
-
-
 }
 
 function toggleIntro() { // used to start and end screens
