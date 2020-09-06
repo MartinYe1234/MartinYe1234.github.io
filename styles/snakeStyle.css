@@ -48,11 +48,11 @@ header{
   color: dimgrey;
   float: right;
   font-size: 28px;
+  font-size: 28px;
   font-weight: bold;
 }
 .close:hover {
   color: rgb(0, 0, 0);
-	border: 2px solid black;
   text-decoration: none;
   cursor: pointer;
 }
