@@ -102,7 +102,7 @@ function startGame() {
 }
 
 function restartGame(){ // after first respawn
-	snake = new Snake('red', 25, 11, 11, [0, 0]);
+	snake = new Snake('rgb(18,178,0)', 25, 11, 11, [0, 0]);
   food = new Food(genInt(), genInt());
   toggleIntro();
 }
