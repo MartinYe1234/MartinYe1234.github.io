@@ -35,7 +35,6 @@ class Snake {
       headX += vx;
       // check for player crossing out side of edges
       if (headX > 23 || headX < 0 || headY < 0 || headY > 23) {
-        console.log(timeToMove);
         startGame();
       }
       if (this.positioning.length == 1) { // move the snake
@@ -171,7 +170,6 @@ function updateGame(player, food) { // checks for collisions
 }
 
 function toggleIntro() { // used to start and end screens
-	console.log("f ran");
   var startScreen = document.getElementById("intro");
   if (introToggled) {
   	startScreen.style.display = "none";
@@ -179,5 +177,4 @@ function toggleIntro() { // used to start and end screens
     startScreen.style.display = "block";
   }
   introToggled = !introToggled;
-  console.log(introToggled);
 }
