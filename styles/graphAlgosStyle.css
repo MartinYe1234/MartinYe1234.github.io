@@ -1,3 +1,6 @@
 body{
 	background-color: rgb(92, 93, 95);
 }
+canvas{
+	border: 1px solid black;
+}

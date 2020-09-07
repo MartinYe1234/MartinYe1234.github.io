@@ -9,7 +9,11 @@ class Graph{
 	}
 }
 class Node{
-	constructor(){
+	constructor(name, colour, position, state){
+		this.name = name
+		this.colour = colour
+		this.position = position
+		this.state = state
 	}
 }
 class Edge{
