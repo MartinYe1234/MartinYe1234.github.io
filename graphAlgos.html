@@ -5,17 +5,19 @@
 		<meta name="description" content="Allows for the creation of graphs and runs graph traversal algorithms">
 		<meta name="author" content="Martin Ye">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="styles/graphAlgosStyle.css">
+		<script type="text/javascript" src="js/graphInterface.js"></script>
+		<script type="text/javascript" src="js/graphClasses.js"></script>
 	</head>
 	
-	<link rel="stylesheet" type="text/css" href="styles/graphAlgosStyle.css">
-	<script type="text/javascript" src="js/graphClasses.js"></script>
-	<script type="text/javascript" src="js/graphInterface.js"></script>
-	
 	<header class="menu">
-		<p>menu goes here</p>
+		<div class="selectionButtons">
+			<button></button>
+			<button></button>
+		</div>
 	</header>
 	<br>
-	<body>
+	<body onload="initialise()">
 	<canvas id="game" width="600" height="600">
 	</canvas>
 	</body>
