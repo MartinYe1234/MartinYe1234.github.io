@@ -5,9 +5,10 @@
   width: 128px;
   float: left;
 }
-
+body{
+	background-color:rgb(185, 255, 105);
+}
 /* controls how the canvas looks */
-
 canvas {
   border: 1px solid black;
   background: url(../images/snakeBackground.png);
