@@ -4,6 +4,7 @@ var mode;
 const button;
 
 function initialiseScreen() {
+    alert("runs");
     canvas = document.getElementById("screen");
     context = canvas.getContext("2d");
     interval = setInterval(draw, 200);
@@ -21,7 +22,7 @@ function draw() {
 }
 
 function toggleMode(){
-    alert("runs");
+    alert("run");
     document.getElementById("test").innerHTML = "hello";
     if (button.value === "Add Node"){
         mode = "addnode";
