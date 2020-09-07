@@ -42,12 +42,13 @@ header{
 
 .intro-content {
 	background: url(../images/snakeIntro.png);
+	background-size: 100% 100%;
   background-color: rgb(0, 200, 55);
-	width: 50%;
   margin: auto;
   padding: 20px;
   border: 1px solid dimgrey;
-  padding-top: 100%;
+  width: 600px;
+  height: 600px;
 }
 /* The close button */
 .close {
@@ -61,6 +62,18 @@ header{
   color: rgb(0, 0, 0);
   text-decoration: none;
   cursor: pointer;
+}
+.start{
+	position: relative;
+  top:600px;
+	border: 5px solid rgb(31, 105, 51);
+	background-color:rgb(0, 200, 55);
+  float:center;
+  padding: 16px 32px;
+}
+.start:hover{
+	background-color:rgb(0, 150, 41);
+	cursor: pointer;
 }
 *{
 	font-family: Monospace;
