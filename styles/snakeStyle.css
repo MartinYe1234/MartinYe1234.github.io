@@ -43,6 +43,7 @@ header{
 .intro-content {
 	background: url(../images/snakeIntro.png);
   background-color: rgb(0, 200, 55);
+	width: 50%;
   margin: auto;
   padding: 20px;
   border: 1px solid dimgrey;
