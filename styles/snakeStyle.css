@@ -30,7 +30,7 @@ header{
 /* Intro screen background */
 .intro {
   display: none;
-  position: fixed;
+  position: absolute;
   z-index: 1;
   padding-top: 130px;
   left: 0;
