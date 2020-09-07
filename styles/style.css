@@ -18,19 +18,20 @@ header {
 /* css used for buttons on home page */
 .headerButtons{
 	float: left;
+	width: 100%;
 }
 
-.headerButtons button{
+.headerButtons a{
 	color: white;
 	border: none;
 	background-color: rgb(79, 79, 79);
 	text-align: center;
 	text-decoration: none;
-	padding: 1rem;
 	float: left;
+	width:50%;
 }
 
-.headerButtons button:hover{
+.headerButtons a:hover{
 	cursor: pointer;
 	color: grey;
 	background-color: rgb(0,0,0);

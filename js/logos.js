@@ -4,19 +4,16 @@ function test(){
 }
 
 function hoverOver(){
-	if (document.getElementById("snakeLOGO")){
+	if (document.getElementById("snakeLOGO").matches(':hover')){
 		document.getElementById("snakeLOGO").src="images/snakeGameGIF.gif";
 	}
-	else if (document.getElementById("graphLOGO")){
+	else if (document.getElementById("graphLOGO").matches(':hover')){
 		document.getElementById("graphLOGO").src="images/graphGIF.gif";
 	}
 }
 
 function hoverOff(){
-	if (document.getElementById("snakeLOGO")){
-		document.getElementById("snakeLOGO").src="images/snakeGameLOGO.png";
-	}
-	else if (document.getElementById("graphLOGO")){
-		document.getElementById("graphLOGO").src="images/graphLOGO.png";
-	}
+	document.getElementById("snakeLOGO").src="images/snakeGameLOGO.png";
+	document.getElementById("graphLOGO").src="images/graphLOGO.png";
+
 }
