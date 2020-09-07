@@ -1,2 +1,5 @@
 class Graph{
+	constructor(){
+		
+	}
 }
