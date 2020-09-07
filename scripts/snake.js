@@ -172,7 +172,7 @@ function updateGame(player, food) { // checks for collisions
 function toggleIntro() { // used to start and end screens
   var startScreen = document.getElementById("intro");
   var score = snake.positioning.length-1;
-  var message = "Previous Score: "+ score.toString(10);
+  var message = "PREVIOUS SCORE: "+ score.toString(10);
   if (introToggled) {
     startScreen.style.display = "none";
   } else {

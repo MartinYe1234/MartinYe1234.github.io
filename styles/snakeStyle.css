@@ -49,6 +49,7 @@ header{
   border: 1px solid dimgrey;
   width: 600px;
   height: 600px;
+	font-size: large;
 }
 
 .start{
@@ -59,6 +60,7 @@ header{
   float:center;
   padding: 16px 32px;
 	float: left;
+	font-size: large;
 }
 .start:hover{
 	background-color:rgb(0, 150, 41);
