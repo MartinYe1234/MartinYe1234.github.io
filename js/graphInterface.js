@@ -3,6 +3,7 @@ var context;
 var mode;
 const button;
 
+alert("this works");
 function initialiseScreen() {
     alert("runs");
     canvas = document.getElementById("screen");
