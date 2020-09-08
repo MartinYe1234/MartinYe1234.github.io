@@ -1,19 +1,20 @@
 var canvas;
 var context;
 var mode;
-const button;
+var myGraph = new Graph();
+var nodeName = 0;
 
-alert("this works");
 function initialiseScreen() {
-    alert("runs");
     canvas = document.getElementById("screen");
     context = canvas.getContext("2d");
     interval = setInterval(draw, 200);
     context.canvas.width  = window.innerWidth;
     context.canvas.height = window.innerHeight;
-    button = document.querySelector('input');
-    button.addEventListner('click', toggleMode, false);
-    alert("ran");
+    let buttons = document.querySelectorAll('input');
+    buttons.forEach(function(button){
+        button.addEventListener('click', toggleMode, false);
+    });
+    canvas.addEventListener('click', canvasEvents, false);
 }
 
 // our draw function that constantly updates our canvas
@@ -23,14 +24,22 @@ function draw() {
 }
 
 function toggleMode(){
-    alert("run");
-    document.getElementById("test").innerHTML = "hello";
-    if (button.value === "Add Node"){
+    if (this.value === "Add Node"){
         mode = "addnode";
-        document.getElementById("test").innerHTML = mode;
     }
-    else if (button.value === "Add Edge"){
+    else if (this.value === "Add Edge"){
         mode = "addedge";
-        document.getElementById("test").innerHTML = mode;
+    }
+}
+
+// determine what happens everytime the user clicks within the canvas
+function canvasEvents(e){
+    if(mode == "addnode"){
+        let mouseX = e.pageX, mouseY = e.pageY;
+        let new_node = new Node(node_name, mouseX, mouseY);
+        myGraph.addNode(new_node);
+    }
+    if(mode == "addedge"){
+        alert(myGraph.graph);
     }
 }
