@@ -66,6 +66,8 @@ class Edge{
 		ctx.beginPath();
 		ctx.moveTo(x1, y1);
 		ctx.lineTo(x2, y2);
+		ctx.lineWidth = 3;
+		context.strokeStyle = 'rgb(0, 12, 68)';
 		ctx.stroke();
 	}
 }
