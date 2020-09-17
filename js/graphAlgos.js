@@ -1,9 +1,8 @@
 function bfs(graph, start){ // runs bfs and recieves graph as an adjacency list
     let order_visited = [start]; // used for the animation of bfs, contains pairs of nodes, in order that they were visited
     let queue = [start];
-    let nodes = Object.keys(graph.graph);
     let visited = {}; // visited dictionary
-    nodes.forEach(function(node){visited[node] = 0});
+    graph.nodes.forEach(function(node){visited[node.name] = 0});
     while(queue.length != 0){
         let current = queue.shift(); // dequeue
         visited[current] = 1;// mark as visited
@@ -16,4 +15,7 @@ function bfs(graph, start){ // runs bfs and recieves graph as an adjacency list
         });   
     }
     return order_visited;
+}   
+function dfs(graph, start){
+    let order_visited = [start];
 }

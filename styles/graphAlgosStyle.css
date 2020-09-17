@@ -24,7 +24,7 @@ canvas{
 	border: 1px solid black;
 	background-color: lightblue;
 	float: left;
-	width: 50%;
+	width: 25%;
 }
 
 .selectionButtons input:hover{

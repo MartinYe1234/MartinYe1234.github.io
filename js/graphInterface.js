@@ -1,8 +1,21 @@
 var canvas;
 var context;
-var mode;
+var mode; // used to determine what event should happen when the user clicks on the screen
 var myGraph;
 var nodeName = 0;
+var colours = { // dictionary of colours to represent different the many different statuses of the nodes/edges
+    unselectedInnerNode : 'rgb(0, 22, 121)',
+    unselectedOuterNode : 'rgb(0, 12, 68)',
+    unselectedEdge : 'rgb(0, 12, 68)',
+    selectedInnerNode: 'rgb(158, 1, 1)',
+    selectedOuterNode : 'rgb(100, 0, 0)',
+    selectedEdge : 'rgb(100, 0, 0)',
+    finalisedInnerNode : 'rgb(200, 92, 0)',
+    finalisedOuterNode : 'rgb(181, 68, 0)',
+    finalisedEdge : 'rgb(181, 68, 0)'
+};
+var primary = -1; // used for adding edges
+var secondary = -1;
 
 function initialiseScreen() {
     canvas = document.getElementById("screen");
@@ -32,17 +45,45 @@ function toggleMode(){
     else if (this.value === "Add Edge"){
         mode = "addedge";
     }
+    else if (this.value === "Start Node"){
+        mode = "selectstart";
+    }
+    else if (this.value === "Target Node"){
+        mode = "selecttarget";
+    }
 }
 
 // determine what happens everytime the user clicks within the canvas
 function canvasEvents(e){
+    let mouseX = e.clientX - canvas.offsetLeft, mouseY = e.clientY - canvas.offsetTop;
     if(mode == "addnode"){
-        let mouseX = e.clientX - canvas.offsetLeft, mouseY = e.clientY - canvas.offsetTop;;
-        let new_node = new Node(nodeName, mouseX, mouseY);
-        myGraph.addNode(new_node);
-        nodeName++;
+        if(!myGraph.updateNodeStates(mouseX, mouseY)){ // when adding nodes, they can not be within each other
+            let new_node = new Node(nodeName, mouseX, mouseY);
+            myGraph.addNode(new_node);
+            nodeName++;
+        };
+        
     }
     if(mode == "addedge"){
-        alert(myGraph.graph[0]);
+        if(myGraph.updateNodeStates(mouseX, mouseY)){
+            myGraph.nodes.forEach(function(node){
+                if(primary == -1 && node.state == "selected"){
+                    primary = node;
+                }                    
+                else if(primary != -1 && primary != node && node.state == "selected"){
+                    secondary = node;
+                }
+                if (primary != -1 && secondary != -1){  //add the edge and reset primary and secondary
+                    newEdge = new Edge(primary, secondary)
+                    if (myGraph.edgeList.indexOf(newEdge) == -1){
+                        myGraph.addEdge(newEdge);
+                    }  // no duplicate edges allowed 
+                    primary.toggleState("unselected");
+                    secondary.toggleState("unselected");
+                    primary = -1;
+                    secondary = -1;
+                }
+            });// loop through each node in all nodes of the graph
+        }
     }
 }
