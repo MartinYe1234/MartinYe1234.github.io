@@ -1,8 +1,8 @@
 class Graph{
 	constructor(){
-		this.nodes = []
-		this.graph = {} // this is the graph in adjacency list form
-		this.edgeList = []
+		this.nodes = [];
+		this.graph = {}; // this is the graph in adjacency list form
+		this.edgeList = [];
 	}
 	addNode(node){
 		// Adds a node to the graph
@@ -18,10 +18,39 @@ class Graph{
 		let temp_set = new Set(this.edgeList); // ensure no duplicate edges
 		this.edgeList = Array.from(temp_set);
 	}
+	delNode(node){
+		let nodes = this.nodes; // this is required because apparently you can't reference this. inside a foreach function
+  		let edgeList = this.edgeList;
+    	let graph = this.graph;
+		let nodeIndex = this.nodes.indexOf(node); // remove node for nodes list
+		nodes.splice(nodeIndex, 1);
+		edgeList.forEach(function(edge){ // remove all edges with the node in it
+			if((edge.u == node) || (edge.v == node)){
+				let edgeIndex = edgeList.indexOf(edge);
+				edgeList[edgeIndex] = -1;
+			}
+		});
+		edgeList = edgeList.filter(function(edge){
+			if(edge!=-1){
+				return edge;
+			}
+		});
+		this.edgeList = edgeList; 
+		graph = {}; // remove all mentions of node for the adjacency list, done by rebuilding it from scratch
+		nodes.forEach(function(node){
+			graph[node.name] = [];
+		});
+	
+		edgeList.forEach(function(edge){
+			let nodeU = edge.u.name, nodeV = edge.v.name;
+			graph[nodeU].push([nodeV, edge.weight]);
+			graph[nodeV].push([nodeU, edge.weight]);
+		});
+	}
 	delEdge(edge){
 		let nodeU = edge.u.name, nodeV = edge.v.name;
-		let index = this.edgeList.indexOf(edge); // delete from edgeList
-		this.edgeList.splice(index, 1); 
+		let edgeIndex = this.edgeList.indexOf(edge); // delete from edgeList
+		this.edgeList.splice(edgeIndex, 1); 
 		let index1 = this.graph[nodeU].indexOf([nodeV, edge.weight]); // delete from adjacency list
 		this.graph[nodeU].splice(index1, 1)
 		let index2 = this.graph[nodeV].indexOf([nodeU, edge.weight]);

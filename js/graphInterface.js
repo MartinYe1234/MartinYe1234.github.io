@@ -48,8 +48,8 @@ function toggleMode(){
     else if (this.value === "Delete Edge"){
         mode = "deledge";
     }
-    else if (this.value === "Target Node"){
-        mode = "selecttarget";
+    else if (this.value === "Delete Node"){
+        mode = "delnode";
     }
 }
 
@@ -84,6 +84,15 @@ function canvasEvents(e){
                     secondary = -1;
                 }
             });// loop through each node in all nodes of the graph
+        }
+    }
+    else if(mode == "delnode"){
+        if(myGraph.updateNodeStates(mouseX, mouseY)){
+            myGraph.nodes.forEach(function(node){
+                if(node.state == "selected"){
+                    myGraph.delNode(node);
+                }
+            });
         }
     }
     else if(mode == "deledge"){
