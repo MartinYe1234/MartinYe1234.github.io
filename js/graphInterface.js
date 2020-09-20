@@ -57,67 +57,81 @@ function toggleMode(){
 function canvasEvents(e){
     let mouseX = e.clientX - canvas.offsetLeft, mouseY = e.clientY - canvas.offsetTop;
     if(mode == "addnode"){
-        if(!myGraph.updateNodeStates(mouseX, mouseY)){ // when adding nodes, they can not be within each other
-            let new_node = new Node(nodeName, mouseX, mouseY);
-            myGraph.addNode(new_node);
-            nodeName++;
-        };
-        
+        canvasAddNode(myGraph, mouseX, mouseY);
     }
     else if(mode == "addedge"){
-        if(myGraph.updateNodeStates(mouseX, mouseY)){
-            myGraph.nodes.forEach(function(node){
-                if(primary == -1 && node.state == "selected"){
-                    primary = node;
-                }                    
-                else if(primary != -1 && primary != node && node.state == "selected"){
-                    secondary = node;
-                }
-                if (primary != -1 && secondary != -1){  //add the edge and reset primary and secondary
-                    newEdge = new Edge(primary, secondary)
-                    if (myGraph.edgeList.indexOf(newEdge) == -1){
-                        myGraph.addEdge(newEdge);
-                    }  // no duplicate edges allowed 
-                    primary.toggleState("unselected");
-                    secondary.toggleState("unselected");
-                    primary = -1;
-                    secondary = -1;
-                }
-            });// loop through each node in all nodes of the graph
-        }
+        canvasAddEdge(myGraph, mouseX, mouseY);
     }
     else if(mode == "delnode"){
-        if(myGraph.updateNodeStates(mouseX, mouseY)){
-            myGraph.nodes.forEach(function(node){
-                if(node.state == "selected"){
-                    myGraph.delNode(node);
-                }
-            });
-        }
+        canvasDelNode(myGraph, mouseX, mouseY);
     }
     else if(mode == "deledge"){
-        if(myGraph.updateNodeStates(mouseX, mouseY)){
-            myGraph.nodes.forEach(function(node){
-                if(primary == -1 && node.state == "selected"){
-                    primary = node;
-                }                    
-                else if(primary != -1 && primary != node && node.state == "selected"){
-                    secondary = node;
-                }
-                if (primary != -1 && secondary != -1){  //add the edge and reset primary and secondary
-                    edge=1;
-                    myGraph.edgeList.forEach(function(edge){
-                        if(((edge.u==primary)&&(edge.v==secondary))||((edge.u==secondary)&&(edge.v==primary))){
-                            myGraph.delEdge(edge);
-                        }
-                    }); 
-                    primary.toggleState("unselected");
-                    secondary.toggleState("unselected");
-                    primary = -1;
-                    secondary = -1;
-                }
-            });// loop through each node in all nodes of the graph
-        }
+        canvasDelEdge(myGraph, mouseX, mouseY);
     }
+}
 
+/*
+Helper Functions for canvasEvents
+*/
+function canvasAddNode(graph, x, y){
+    if(!graph.updateNodeStates(x, y)){ // when adding nodes, they can not be within each other
+        let newNode = new Node(nodeName, x, y);
+        graph.addNode(newNode);
+        nodeName++;
+    };
+}
+function canvasAddEdge(graph, x, y){
+    if(graph.updateNodeStates(x, y)){
+        graph.nodes.forEach(function(node){
+            if(primary == -1 && node.state == "selected"){
+                primary = node;
+            }                    
+            else if(primary != -1 && primary != node && node.state == "selected"){
+                secondary = node;
+            }
+            if (primary != -1 && secondary != -1){  //add the edge and reset primary and secondary
+                newEdge = new Edge(primary, secondary)
+                if (graph.edgeList.indexOf(newEdge) == -1){
+                    graph.addEdge(newEdge);
+                }  // no duplicate edges allowed 
+                primary.toggleState("unselected");
+                secondary.toggleState("unselected");
+                primary = -1;
+                secondary = -1;
+            }
+        });// loop through each node in all nodes of the graph
+    }
+}
+function canvasDelNode(graph, x, y){
+    if(graph.updateNodeStates(x, y)){
+        graph.nodes.forEach(function(node){
+            if(node.state == "selected"){
+                graph.delNode(node);
+            }
+        });
+    }
+}
+function canvasDelEdge(graph, x, y){
+    if(graph.updateNodeStates(x, y)){
+        graph.nodes.forEach(function(node){
+            if(primary == -1 && node.state == "selected"){
+                primary = node;
+            }                    
+            else if(primary != -1 && primary != node && node.state == "selected"){
+                secondary = node;
+            }
+            if (primary != -1 && secondary != -1){  //add the edge and reset primary and secondary
+                edge=1;
+                graph.edgeList.forEach(function(edge){
+                    if(((edge.u==primary)&&(edge.v==secondary))||((edge.u==secondary)&&(edge.v==primary))){
+                        graph.delEdge(edge);
+                    }
+                }); 
+                primary.toggleState("unselected");
+                secondary.toggleState("unselected");
+                primary = -1;
+                secondary = -1;
+            }
+        });// loop through each node in all nodes of the graph
+    }
 }
