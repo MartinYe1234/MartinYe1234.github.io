@@ -45,8 +45,8 @@ function toggleMode(){
     else if (this.value === "Add Edge"){
         mode = "addedge";
     }
-    else if (this.value === "Start Node"){
-        mode = "selectstart";
+    else if (this.value === "Delete Edge"){
+        mode = "deledge";
     }
     else if (this.value === "Target Node"){
         mode = "selecttarget";
@@ -64,7 +64,7 @@ function canvasEvents(e){
         };
         
     }
-    if(mode == "addedge"){
+    else if(mode == "addedge"){
         if(myGraph.updateNodeStates(mouseX, mouseY)){
             myGraph.nodes.forEach(function(node){
                 if(primary == -1 && node.state == "selected"){
@@ -86,4 +86,29 @@ function canvasEvents(e){
             });// loop through each node in all nodes of the graph
         }
     }
+    else if(mode == "deledge"){
+        if(myGraph.updateNodeStates(mouseX, mouseY)){
+            myGraph.nodes.forEach(function(node){
+                if(primary == -1 && node.state == "selected"){
+                    primary = node;
+                }                    
+                else if(primary != -1 && primary != node && node.state == "selected"){
+                    secondary = node;
+                }
+                if (primary != -1 && secondary != -1){  //add the edge and reset primary and secondary
+                    edge=1;
+                    myGraph.edgeList.forEach(function(edge){
+                        if(((edge.u==primary)&&(edge.v==secondary))||((edge.u==secondary)&&(edge.v==primary))){
+                            myGraph.delEdge(edge);
+                        }
+                    }); 
+                    primary.toggleState("unselected");
+                    secondary.toggleState("unselected");
+                    primary = -1;
+                    secondary = -1;
+                }
+            });// loop through each node in all nodes of the graph
+        }
+    }
+
 }

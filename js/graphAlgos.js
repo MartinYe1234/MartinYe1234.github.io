@@ -10,8 +10,8 @@ function bfs(graph, start){ // runs bfs and recieves graph as an adjacency list
             let adjacent_node = adjacent[0];
             if(!visited[adjacent_node]){
                 queue.push(adjacent_node);
-                order_visited.push([current, adjacent_node]);
             }
+            order_visited.push([current, adjacent_node]);
         });   
     }
     return order_visited;
