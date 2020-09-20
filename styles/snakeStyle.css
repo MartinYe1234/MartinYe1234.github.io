@@ -6,11 +6,11 @@
   float: left;
 }
 body{
-	background-color:rgb(185, 255, 105);
+  background: url(../images/snakeBACK.png);
 }
 /* controls how the canvas looks */
 canvas {
-  border: 1px solid black;
+  border: 3px solid black;
   background: url(../images/snakeBackground.png);
 	margin-left: auto;
   margin-right: auto;

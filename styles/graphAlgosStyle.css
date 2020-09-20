@@ -16,7 +16,8 @@ canvas{
 }
 
 .selectionButtons{
-	float: left;
+	float: right;
+	height: 100px;
 	width: 100%;
 }
 
@@ -24,7 +25,8 @@ canvas{
 	border: 1px solid black;
 	background-color: lightblue;
 	float: left;
-	width: 25%;
+	height: 50%;
+	width: 20%;
 }
 
 .selectionButtons input:hover{

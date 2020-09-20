@@ -39,17 +39,20 @@ function draw() {
 }
 
 function toggleMode(){
-    if (this.value === "Add Node"){
+    if (this.value == "Add Node"){
         mode = "addnode";
     }
-    else if (this.value === "Add Edge"){
+    else if (this.value == "Add Edge"){
         mode = "addedge";
     }
-    else if (this.value === "Delete Edge"){
+    else if (this.value == "Delete Edge"){
         mode = "deledge";
     }
-    else if (this.value === "Delete Node"){
+    else if (this.value == "Delete Node"){
         mode = "delnode";
+    }
+    else if (this.value == "Reset"){
+        initialiseScreen();
     }
 }
 
