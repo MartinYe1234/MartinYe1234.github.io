@@ -57,8 +57,8 @@ class Graph{
 		this.graph[nodeV].splice(index2, 1)
 	}
 	drawGraph(ctx){
-		this.nodes.forEach(function(node){node.draw(ctx)});
 		this.edgeList.forEach(function(edge){edge.draw(ctx)});
+		this.nodes.forEach(function(node){node.draw(ctx)});
 	}
 	updateNodeStates(x, y){ // used for updating all node states after mouse click
 		// returns whether or not a change occured in the states
@@ -104,10 +104,20 @@ class Node{
 			this.outerColour = colours.finalisedOuterNode;
 			this.state = "final";
 		}
-		else if(state = "unselected"){
+		else if(state == "unselected"){
 			this.innerColour = colours.unselectedInnerNode;
 			this.outerColour = colours.unselectedOuterNode;
 			this.state = "unselected";
+		}
+		else if(state == "start"){
+			this.innerColour = colours.startInner;
+			this.outerColour = colours.startOuter;
+			this.state = "start";
+		}
+		else if(state == "target"){
+			this.innerColour = colours.targetInner;
+			this.outerColour = colours.targetOuter;
+			this.state = "target";
 		}
 	}
 	isSelected(x, y){ // determine if the player clicked on a node, calculated using click position and size of the node

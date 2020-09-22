@@ -12,7 +12,11 @@ var colours = { // dictionary of colours to represent different the many differe
     selectedEdge : 'rgb(100, 0, 0)',
     finalisedInnerNode : 'rgb(200, 92, 0)',
     finalisedOuterNode : 'rgb(181, 68, 0)',
-    finalisedEdge : 'rgb(181, 68, 0)'
+    finalisedEdge : 'rgb(181, 68, 0)',
+    startInner : 'rgb(9, 219, 65)',
+    startOuter : 'rgb(5, 166, 48)',
+    targetInner : 'rgb(150, 0, 224)',
+    targetOuter : 'rgb(106, 0, 158)'
 };
 var primary = -1; // used for adding edges
 var secondary = -1;
@@ -117,7 +121,7 @@ function canvasAddNode(graph, x, y){
     };
 }
 function canvasAddEdge(graph, x, y){
-    if(graph.updateNodeStates(x, y)){
+    if(graph.updateNodeStates(x, y)){ // a node must be selected
         graph.nodes.forEach(function(node){
             if(primary == -1 && node.state == "selected"){
                 primary = node;
@@ -172,8 +176,28 @@ function canvasDelEdge(graph, x, y){
     }
 }
 function canvasSetStart(graph, x, y){
-    startNode = node;
+    if(graph.updateNodeStates(x, y)){ // if a node was selected
+        graph.nodes.forEach(function(node){
+            if(node.state == "start"){ // only 1 start node allowed
+                node.toggleState("unselected");
+            }
+            if(node.state == "selected"){
+                node.toggleState("start");
+                startNode = node;
+            }
+        });
+    }
 }
 function canvasSetTarget(graph, x, y){
-    targetNode = node;
+    if(graph.updateNodeStates(x, y)){ // if a node was selected
+        graph.nodes.forEach(function(node){
+            if(node.state == "target"){ // only 1 target node allowed
+                node.toggleState("unselected");
+            }
+            if(node.state == "selected"){
+                node.toggleState("target");
+                targetNode = node;
+            }
+        });
+    }
 }
