@@ -114,7 +114,6 @@ class Node{
 		let distance = ((this.x-x)**2 + (this.y-y)**2)**0.5;
 		return (distance <= (this.radius+5))
 	}
-
 }
 class Edge{
 	constructor(u, v){

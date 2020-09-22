@@ -16,11 +16,14 @@ var colours = { // dictionary of colours to represent different the many differe
 };
 var primary = -1; // used for adding edges
 var secondary = -1;
+var targetNode = -1; // used for graph algorithms
+var startNode = -1;
+var selectedAlgorithm = "null";
 
 function initialiseScreen() {
     canvas = document.getElementById("screen");
     context = canvas.getContext("2d");
-    interval = setInterval(draw, 200);
+    interval = setInterval(draw, 50);
     context.canvas.width  = window.innerWidth;
     context.canvas.height = window.innerHeight;
     myGraph = new Graph();
@@ -35,9 +38,15 @@ function initialiseScreen() {
 function draw() {
     //clear screen everytime
     context.clearRect(0, 0, canvas.width, canvas.height);
-    myGraph.drawGraph(context);
+    if(mode == "run"){
+        animateGraph(context, selectedAlgorithm);
+    }
+    else{
+        myGraph.drawGraph(context);
+    }
 }
 
+// used to handle button inputs
 function toggleMode(){
     if (this.value == "Add Node"){
         mode = "addnode";
@@ -51,8 +60,26 @@ function toggleMode(){
     else if (this.value == "Delete Node"){
         mode = "delnode";
     }
+    else if (this.value == "Select Start"){
+        mode = "setstart";
+    }
+    else if (this.value == "Select Target"){
+        mode = "settarget";
+    }
     else if (this.value == "Reset"){
         initialiseScreen();
+    }
+    else if (this.value == "BFS"){
+        selectedAlgorithm = "BFS";
+    }
+    else if (this.value == "DFS"){
+        selectedAlgorithm = "DFS";
+    }
+    else if (this.value == "tobeadded"){
+        selectedAlgorithm = "tobeadded";
+    }
+    else if (this.value == "Run"){
+        mode = "run";
     }
 }
 
@@ -70,6 +97,12 @@ function canvasEvents(e){
     }
     else if(mode == "deledge"){
         canvasDelEdge(myGraph, mouseX, mouseY);
+    }
+    else if(mode == "setstart"){
+        canvasSetStart(myGraph, mouseX, mouseY);
+    }
+    else if(mode == "settarget"){
+        canvasSetTarget(myGraph, mouseX, mouseY);
     }
 }
 
@@ -137,4 +170,10 @@ function canvasDelEdge(graph, x, y){
             }
         });// loop through each node in all nodes of the graph
     }
+}
+function canvasSetStart(graph, x, y){
+    startNode = node;
+}
+function canvasSetTarget(graph, x, y){
+    targetNode = node;
 }

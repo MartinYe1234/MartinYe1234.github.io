@@ -5,13 +5,14 @@ header{
 }
 
 body{
-	background-color: rgb(92, 93, 95);
+	background-color: rgb(255, 255, 255);
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
 }
 
 canvas{
+	background-color: rgb(92, 93, 95);
 	border: 1px solid black;
 }
 
@@ -32,6 +33,34 @@ canvas{
 .selectionButtons input:hover{
 	background-color: blue;
 	cursor: pointer;
+}
+
+.graphSelect{
+	float: left;
+	position: relative;
+	border: none;
+	width: 20%;
+}
+
+.graphSelect:hover .graphSelectButton{
+	display: block;
+}
+
+.dropbtn{
+	border: 1px solid black;
+	background-color: lightblue;
+	height: 50px;
+	width: 100%;
+}
+
+.graphSelectButton{
+	display: none;
+}
+
+.graphSelectButton input{
+	display:block;
+	width: 100%;
+	height: 50px;
 }
 
 *{
